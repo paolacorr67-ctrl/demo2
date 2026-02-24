@@ -1,4 +1,3 @@
-about
 analisis-exploratorio-de-datos
 carga-del-dataset
 dimensión-de-nuestro-dataset
