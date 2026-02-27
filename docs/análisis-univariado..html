@@ -26,7 +26,7 @@ The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   
 
-<meta name="author" content="John Doe" />
+<meta name="author" content="Natalia Alvarado" />
 
 
 <meta name="date" content="2026-02-27" />
@@ -287,7 +287,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb16-25"><a href="análisis-univariado..html#cb16-25" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Nivel de cobertura&quot;</span>,</span>
 <span id="cb16-26"><a href="análisis-univariado..html#cb16-26" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Número de indicadores&quot;</span></span>
 <span id="cb16-27"><a href="análisis-univariado..html#cb16-27" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-29-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-6-1.png" alt="" width="672" /></p>
 <p>El análisis de cobertura temporal revela que el 47.7% de los indicadores presenta baja cobertura (&lt;50%), lo que indica una disponibilidad limitada de datos a lo largo del período 1960–2024. Esto sugiere que una proporción considerable de indicadores no cuenta con suficiente respaldo histórico para realizar análisis de tendencia de largo plazo.</p>
 <p>Por otro lado, el 38.2% de los indicadores muestra alta cobertura (≥80%), lo que garantiza una base sólida para estudios longitudinales y análisis comparativos en el tiempo.</p>
 <p>Estos resultados evidencian que, aunque el dataset es amplio en términos de cantidad de indicadores, la calidad y continuidad temporal de la información es heterogénea.Por lo tanto, para los análisis posteriores se priorizarán los indicadores con alta cobertura, con el fin de asegurar mayor consistencia y confiabilidad en los resultados.</p>
@@ -336,7 +336,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb24-15"><a href="análisis-univariado..html#cb24-15" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Año&quot;</span>,</span>
 <span id="cb24-16"><a href="análisis-univariado..html#cb24-16" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Número de registros disponibles&quot;</span></span>
 <span id="cb24-17"><a href="análisis-univariado..html#cb24-17" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-32-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" alt="" width="672" /></p>
 </div>
 <div id="value" class="section level3 hasAnchor" number="3.2.2">
 <h3><span class="header-section-number">3.2.2</span> Value<a href="análisis-univariado..html#value" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -367,7 +367,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb29-10"><a href="análisis-univariado..html#cb29-10" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
 <span id="cb29-11"><a href="análisis-univariado..html#cb29-11" tabindex="-1"></a>  )</span></code></pre></div>
 <pre><code>## Warning: Removed 31 rows containing non-finite outside the scale range (`stat_bin()`).</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-35-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-12-1.png" alt="" width="672" /></p>
 <p>La distribución general de la variable Value muestra una marcada asimetría positiva. La mayor parte de las observaciones se concentra en valores bajos, cercanos a cero, mientras que un número reducido de registros alcanza magnitudes extremadamente altas, generando una cola larga hacia la derecha. Esta concentración provoca que el histograma se vea comprimido en el extremo inferior del eje horizontal, dificultando la visualización detallada de la mayoría de los datos. Este comportamiento es consistente con la diferencia observada entre la media y la mediana, y refleja la coexistencia de indicadores medidos en escalas muy distintas dentro del mismo conjunto de datos. Por lo tanto, no es apropiado interpretar esta variable de manera agregada, siendo más adecuado analizar cada indicador de forma individual.</p>
 
 </div>
