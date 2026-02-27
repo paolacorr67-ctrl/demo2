@@ -1,0 +1,5 @@
+
+# Conclusión
+
+El análisis de correlaciones rezagadas revela un hallazgo significativo: existe una correlación negativa moderada (r = -0.316, p = 0.025) entre la fecundidad adolescente y la población infantil total con un rezago de 15 años. Este resultado sugiere que los cambios en la fecundidad adolescente no se reflejan de inmediato en la estructura poblacional, sino que operan con retrasos demográficos importantes, probablemente mediados por la entrada en edad reproductiva de las cohortes futuras.\
+

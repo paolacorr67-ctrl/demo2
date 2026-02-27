@@ -1,0 +1,14 @@
+book_filesname: "demo2"
+delete_merged_file: true
+output_dir: "docs"
+language:
+  ui:
+    chapter_name: "Chapter "
+    
+rmd_files:
+  - index.Rmd
+  - 01-intro.Rmd
+  - 02-univariado.Rmd
+  - 03-serietiempo.Rmd
+  - 04-bivariado.Rmd
+  - 05-conclusiones.Rmd

@@ -1,0 +1,176 @@
+
+# Análisis univariado.
+
+Analicemos las carateristicas generales de cada variable de nuestro set de datos.
+
+```{r}
+str(df_long)
+```
+
+## Análisis de las variables categórica
+
+### Series.name
+
+```{r}
+library(ggplot2)
+
+#  Calcular cobertura porcentual por indicador
+frecuencia_indicadores <- df_long %>%
+  group_by(Series.Name) %>%
+  summarise(
+    total_registros = n(),                     # Total de años posibles
+    años_con_datos = sum(!is.na(Value)),       # Años con datos reales
+    años_sin_datos = sum(is.na(Value)),        # Años sin datos
+    porcentaje_cobertura = round((años_con_datos / total_registros) * 100, 2)
+  ) %>%
+  arrange(desc(porcentaje_cobertura))
+
+# Ver los primeros indicadores con mayor cobertura
+head(frecuencia_indicadores)
+
+# Clasificación por porcentaje
+df_categorias <- frecuencia_indicadores %>%
+  mutate(
+    categoria = case_when(
+      porcentaje_cobertura >= 80 ~ "Alta cobertura (≥80%)",
+      porcentaje_cobertura >= 50 ~ "Cobertura media (50–79%)",
+      TRUE ~ "Baja cobertura (<50%)"
+    )
+  ) %>%
+  mutate(
+    categoria = factor(categoria,
+                       levels = c("Alta cobertura (>=80%)",
+                                  "Cobertura media (50–79%)",
+                                  "Baja cobertura (<50%)"))
+  )
+resumen_categorias <- df_categorias %>%
+  group_by(categoria) %>%
+  summarise(n = n()) %>%
+  mutate(porcentaje = round(n / sum(n) * 100, 1))
+
+print(resumen_categorias)
+ggplot(resumen_categorias, aes(x = categoria, y = n, fill = categoria)) +
+  geom_col(width = 0.7) +
+  geom_text(aes(label = paste0(n, " (", porcentaje, "%)")), 
+            vjust = -0.5, 
+            size = 4,
+            fontface = "bold") +
+  scale_fill_manual(values = c(
+    "Alta cobertura (≥80%)" = "#1F4E79",
+    "Cobertura media (50–79%)" = "#4A7A9C",
+    "Baja cobertura (<50%)" = "#7BA0B9"
+  )) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(size = 12, hjust = 0.5, color = "gray50"),
+    axis.title = element_text(size = 12, face = "bold"),
+    axis.text = element_text(size = 11),
+    legend.position = "none",
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor = element_blank()
+  ) +
+  labs(
+    title = "Clasificación de indicadores según cobertura temporal",
+    subtitle = "Criterio basado en porcentaje de datos disponibles (1960–2024)",
+    x = "Nivel de cobertura",
+    y = "Número de indicadores"
+  )
+```
+
+El análisis de cobertura temporal revela que el 47.7% de los indicadores presenta baja cobertura (\<50%), lo que indica una disponibilidad limitada de datos a lo largo del período 1960–2024. Esto sugiere que una proporción considerable de indicadores no cuenta con suficiente respaldo histórico para realizar análisis de tendencia de largo plazo.
+
+Por otro lado, el 38.2% de los indicadores muestra alta cobertura (≥80%), lo que garantiza una base sólida para estudios longitudinales y análisis comparativos en el tiempo.
+
+Estos resultados evidencian que, aunque el dataset es amplio en términos de cantidad de indicadores, la calidad y continuidad temporal de la información es heterogénea.Por lo tanto, para los análisis posteriores se priorizarán los indicadores con alta cobertura, con el fin de asegurar mayor consistencia y confiabilidad en los resultados.
+
+```{r}
+# Filtrar solo indicadores de alta cobertura (>50 años con datos)
+indicadores_alta_cobertura <- frecuencia_indicadores %>%
+  filter(años_con_datos > 50)
+
+# Ver cuántos indicadores de alta cobertura tenemos
+cat("Número de indicadores de alta cobertura:", nrow(indicadores_alta_cobertura))
+cat("Porcentaje del total:", round(nrow(indicadores_alta_cobertura)/nrow(frecuencia_indicadores)*100, 2), "%")
+
+# Ver los nombres de los indicadores de alta cobertura
+
+# Si quieres crear un nuevo dataframe SOLO con los datos de estos indicadores
+df_alta_cobertura <- df_long %>%
+  filter(Series.Name %in% indicadores_alta_cobertura$Series.Name)
+
+# Reemplazar df_long por la versión filtrada
+df_long <- df_alta_cobertura
+
+```
+
+Tras aplicar el criterio de selección, el conjunto de datos se reduce de 474 a 181 indicadores, lo que representa una depuración del 61.8% de los indicadores originales. Este filtrado mejora la calidad del análisis al concentrarse en variables con suficiente continuidad temporal.
+
+## Análisis de las variables numericas.
+
+### Year
+
+```{r}
+summary(df_long$Year)
+```
+
+La variable Year presenta un rango entre 1960 y 2024. La coincidencia entre media y mediana (1992) indica una distribución temporal simétrica, sin concentración excesiva en años específicos dentro del período analizado.
+
+```{r}
+library(dplyr)
+library(ggplot2)
+
+datos_por_anio <- df_long %>%
+  group_by(Year) %>%
+  summarise(
+    datos_disponibles = sum(!is.na(Value))
+  )
+
+ggplot(datos_por_anio, aes(x = Year, y = datos_disponibles)) +
+  geom_line(color = "#1F4E79", size = 1) +
+  theme_minimal() +
+  labs(
+    title = "Disponibilidad de datos por año ",
+    x = "Año",
+    y = "Número de registros disponibles"
+  )
+```
+
+### Value
+
+```{r}
+summary(df_long$Value)
+```
+
+El análisis descriptivo de la variable Value muestra una alta dispersión en los datos. El valor mínimo registrado es de -98.057, mientras que el valor máximo alcanza 52.886.363, lo que evidencia una amplitud considerable entre los indicadores analizados.
+
+La media (1.226.070) es significativamente mayor que la mediana (209.957), lo que indica una fuerte asimetría positiva en la distribución. Esto sugiere la presencia de valores extremadamente altos que influyen en el promedio, mientras que la mayoría de las observaciones se concentra en magnitudes considerablemente menores.
+
+El primer cuartil (15) y el tercer cuartil (418.892) muestran que el 50% central de los datos se ubica en un rango amplio, lo cual refleja la coexistencia de indicadores medidos en distintas escalas y unidades. En consecuencia, la variable no puede interpretarse como una medida homogénea, sino como la agregación de múltiples fenómenos demográficos y de salud.
+
+Finalmente, se identificaron 31 valores faltantes (NA) dentro del subconjunto de indicadores de alta cobertura, lo que representa una proporción reducida en comparación con el total de observaciones filtradas.
+
+```{r}
+#Veamos que indicador nos arroja ese valor negativo alto.
+df_long %>%
+  filter(Value == min(Value, na.rm = TRUE))
+```
+
+El valor mínimo observado (-98.057) corresponde al indicador de migración neta en el año 1976. Este valor negativo indica que, durante ese año, Colombia registró una mayor cantidad de emigrantes que inmigrantes.
+
+```{r}
+
+ggplot(df_long, aes(x = Value)) +
+  geom_histogram(bins = 30, fill = "#6baed6", color = "white") +
+  labs(
+    title = "Distribución General de la Variable Value",
+    x = "Valor",
+    y = "Frecuencia"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold")
+  )
+```
+
+La distribución general de la variable Value muestra una marcada asimetría positiva. La mayor parte de las observaciones se concentra en valores bajos, cercanos a cero, mientras que un número reducido de registros alcanza magnitudes extremadamente altas, generando una cola larga hacia la derecha. Esta concentración provoca que el histograma se vea comprimido en el extremo inferior del eje horizontal, dificultando la visualización detallada de la mayoría de los datos. Este comportamiento es consistente con la diferencia observada entre la media y la mediana, y refleja la coexistencia de indicadores medidos en escalas muy distintas dentro del mismo conjunto de datos. Por lo tanto, no es apropiado interpretar esta variable de manera agregada, siendo más adecuado analizar cada indicador de forma individual.

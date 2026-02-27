@@ -1,0 +1,91 @@
+
+# Análisis bivariado
+
+```{r}
+# Relación entre fecundidad adolescente y población infantil
+df_relacion <- df_3 %>%
+  select(Year, Series.Name, Value) %>%
+  pivot_wider(names_from = Series.Name, values_from = Value)
+
+# Renombrar columnas para facilitar
+colnames(df_relacion) <- c("Year", "Fecundidad_Adolescente", "Poblacion_Femenina_0", "Poblacion_Masculina_0")
+
+# Calcular población infantil total
+df_relacion$Poblacion_Infantil_Total <- df_relacion$Poblacion_Femenina_0 + df_relacion$Poblacion_Masculina_0
+
+# Correlación
+cor.test(df_relacion$Fecundidad_Adolescente, df_relacion$Poblacion_Infantil_Total, method = "pearson")
+
+# Visualizar relación
+ggplot(df_relacion, aes(x = Fecundidad_Adolescente, y = Poblacion_Infantil_Total)) +
+  geom_point(color = "#1F4E79", size = 2) +
+  geom_smooth(method = "lm", se = TRUE, color = "#F18F01") +
+  theme_minimal() +
+  labs(
+    title = "Relación entre fecundidad adolescente y población infantil total",
+    x = "Tasa de fecundidad adolescente",
+    y = "Población infantil total (edad 0)"
+  )
+```
+
+-   0.1946 es una correlación positiva muy débil,indica que existe una leve tendencia a que cuando aumenta la fecundidad adolescente, también aumente la población infantil total, pero la relación es muy tenue.
+
+-   p = 0.1233 \> 0.05, No hay evidencia estadísticamente significativa para afirmar que existe una correlación entre la fecundidad adolescente y la población infantil total en Colombia durante el período analizado.
+
+-   El intervalo inluye el 0 así que no podemos asegurar si la relación es positiva, negativa o inexistente.
+
+En conclusión, no existe una relación lineal estadísticamente significativa entre la fecundidad adolescente y la población infantil total en Colombia entre 1960 y 2024.
+
+Esto puede deberse a:
+
+La fecundidad adolescente es solo una parte de la fecundidad total. Las mujeres adultas (20+ años) aportan muchos más nacimientos.
+
+Cambios demográficos estructurales: La población infantil total está influenciada por múltiples factores (fecundidad general, mortalidad infantil, migración, etc.).
+
+## Prueba con rezagos
+
+El objetivo fundamental de aplicar rezagos es entender relaciones de causa-efecto a lo largo del tiempo
+
+```{r}
+# Crear rezagos de 5, 10 y 15 años
+df_rezagos <- df_relacion %>%
+  arrange(Year) %>%
+  mutate(
+    Fecundidad_lag5 = lag(Fecundidad_Adolescente, 5),
+    Fecundidad_lag10 = lag(Fecundidad_Adolescente, 10),
+    Fecundidad_lag15 = lag(Fecundidad_Adolescente, 15)
+  )
+
+# Correlación con rezago 5
+cor.test(df_rezagos$Fecundidad_lag5, df_rezagos$Poblacion_Infantil_Total)
+
+# Correlación con rezago 10  
+cor.test(df_rezagos$Fecundidad_lag10, df_rezagos$Poblacion_Infantil_Total)
+
+# Correlación con rezago 15
+cor.test(df_rezagos$Fecundidad_lag15, df_rezagos$Poblacion_Infantil_Total)
+```
+
+-   Rezago de 5 años:
+
+Correlación positiva muy débil
+
+No significativa (p \> 0.05)
+
+El intervalo incluye al cero → no podemos concluir nada
+
+-   Rezago de 10 años:
+
+Correlación negativa débil
+
+No significativa (p \> 0.05)
+
+Intervalo cruza cero (apenas)
+
+-   Rezago de 15 años:
+
+Correlación negativa moderada
+
+Sí es estadísticamente significativa (p \< 0.05)
+
+r = -0.3158 indica que a mayor fecundidad adolescente hoy, menor población infantil total 15 años después (o viceversa).

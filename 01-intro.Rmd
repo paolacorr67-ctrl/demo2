@@ -1,0 +1,85 @@
+
+# ANALISIS EXPLORATORIO DE DATOS
+
+En el presente documento se realiza un análisis del conjunto de datos obtenido de la base World Bank, específicamente de la fuente Health Nutrition and Population Statistics, disponible en el siguiente enlace: <https://databank.worldbank.org/source/health-nutrition-and-population-statistics>
+
+Este dataset recopila información sobre indicadores de salud, nutrición y población para más de 266 territorios a nivel mundial. Entre estos territorios se incluyen principalmente países, pero también agregaciones regionales que agrupan varios países, así como conjuntos de islas y otras divisiones geográficas.
+
+Cada territorio cuenta con múltiples indicadores asociados. Entre ellos se encuentran, por ejemplo: la tasa de fecundidad adolescente (nacimientos por cada 1.000 mujeres entre 15 y 19 años), la cantidad de adultos (15 años o más) y niños (0 a 14 años) que viven con VIH, la edad al primer matrimonio en mujeres y hombres, entre muchos otros. En total, el dataset contiene 474 indicadores distintos.
+
+La estructura del archivo incluye columnas correspondientes al nombre del indicador, código del indicador, nombre del país, código del país y valores anuales comprendidos entre 1960 y 2024.
+
+## CARGA DEL DATASET
+
+```{r}
+df <- read.csv("C:/Users/MSI TRUE GAMING/Desktop/ejercicio 3/EDA/a6229004-b9bf-4015-9569-b0b826d6db87_Data.csv")
+
+# Eliminamos las últimas 5 filas que no necesitamos porque son la fuente y la fecha de actualización 
+df <- df[1:474,1:69]
+head(df)
+```
+
+## Dimensión de nuestro dataset
+
+```{r}
+dim(df)
+```
+
+El resultado indica que el conjunto de datos posee:
+
+-   474 filas
+
+-   69 columnas
+
+Esto significa que el dataset contiene 474 observaciones y 69 variables asociadas.
+
+## Set de datos
+
+La información recolectada se encuentra almacenada en un archivo en formato CSV, el cual contiene 479 filas y 69 columnas. Cada registro corresponde a un indicador específico de salud, nutrición o población asociado a un país o territorio determinado. Es decir, cada fila representa la combinación de un indicador y un territorio, mientras que las columnas contienen información descriptiva y valores anuales del indicador. Las columnas son:
+
+1\. Series.Name: Contiene el nombre del indicador de salud o población (por ejemplo, tasa de fecundidad, esperanza de vida, prevalencia de VIH, entre otros) (Categórica)
+
+2\. Series.Code: Código único asignado por el Banco Mundial para identificar cada indicador. (Categórica)
+
+3\. Country.Name: : Nombre del país o territorio al que pertenecen los datos.(Categórica)
+
+4\. Country.Code:Código estandarizado del país según la clasificación internacional.(Categórica)
+
+5.Variables temporales(1960-2024): Cada una de estas columnas contiene el valor cuantitativo del indicador correspondiente para un año específico. (Numéricas)
+
+## Transformación del dataset
+
+El formato ancho dificulta la manipulación, visualización y análisis de series temporales, por lo que se realizó una transformación a formato largo siguiendo el principio de tidy data.
+
+```{r}
+library(tidyr)
+library(dplyr)
+
+df_long <- df %>%
+  pivot_longer(
+    cols = -c(Series.Name, Series.Code, Country.Name, Country.Code),
+    names_to = "Year",
+    values_to = "Value"
+  )
+
+df_long$Year <- gsub("X|\\.\\.YR.*", "", df_long$Year)
+head(df_long)
+
+
+df_long <- df_long %>%
+  mutate(
+    Value = ifelse(Value == "..", NA, Value),  # ".." pasa a NA
+    Value = as.numeric(Value), # Convertimos a numérico
+    Year = as.Date(paste0(Year, "-01-01"))
+  )
+```
+Puesto que el presente análisis se enfoca exclusivamente en Colombia, las columnas Country.Name y Country.Code resultan redundantes, ya que todos los registros corresponden al mismo país. De manera similar, la columna Series.Code, si bien contiene información valiosa sobre la codificación de los indicadores, no es necesaria para el análisis descriptivo y visual que se realizará, donde el nombre del indicador (Series.Name) proporciona contexto suficiente. Por lo tanto, se procede a eliminar estas columnas para trabajar con un dataset más limpio y eficiente, conservando únicamente las variables esenciales: Series.Name (nombre del indicador), Year (año) y Value (valor del indicador).
+
+```{r}
+# Eliminar las columnas Country.Name y Country.Code y Series.Code
+
+df_long <- df_long %>%
+  select(Series.Name, Year, Value)
+
+head(df_long)
+```

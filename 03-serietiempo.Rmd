@@ -1,0 +1,159 @@
+
+# Análisis de la serie de tiempo.
+
+Con el fin de realizar un análisis más profundo y coherente, se seleccionaron tres indicadores específicos: la tasa de fecundidad adolescente y la población de 0 años desagregada por sexo. Esta selección responde a un criterio demográfico, ya que la fecundidad adolescente constituye un determinante relevante en la dinámica poblacional, mientras que el tamaño de la cohorte infantil permite observar los efectos agregados del comportamiento reproductivo en el tiempo.
+
+El análisis conjunto de estos indicadores permite explorar posibles relaciones entre la evolución de la fecundidad y la estructura etaria temprana en Colombia, facilitando una interpretación más integrada del fenómeno poblacional durante el período 1960–2024. Con el fin de contestar la siguiente pregunta: ¿Existe una relación entre la evolución de la fecundidad adolescente y el tamaño de la cohorte infantil en Colombia desde 1960 hasta 2024?
+
+```{r}
+#Filtremos los 3 indicadores que nos interesan.
+indicadores_interes <- c(
+  "Adolescent fertility rate (births per 1,000 women ages 15-19)",
+  "Age population, age 00, female",
+  "Age population, age 00, male"
+)
+
+df_3 <- df_long %>%
+  filter(Series.Name %in% indicadores_interes)
+```
+
+## Fecundidad adolescente
+
+```{r}
+ggplot(
+  df_3 %>% 
+    filter(Series.Name == "Adolescent fertility rate (births per 1,000 women ages 15-19)"),
+  aes(x = Year, y = Value)
+) +
+  geom_line(color = "#1F4E79", size = 1) +
+  theme_minimal() +
+  labs(
+    title = "Adolescent Fertility Rate en Colombia (1960–2024)",
+    x = "Año",
+    y = "Nacimientos por cada 1.000 mujeres (15–19)"
+  )
+```
+
+La tasa de fecundidad adolescente en Colombia presenta una tendencia general descendente entre 1960 y 2024. En los años 60 supera los 110 nacimientos por cada 1.000 mujeres (15–19), disminuye de forma sostenida en los 70 y principios de los 80, y muestra un leve repunte a finales de los 80 y durante los 90.
+
+A partir de los años 2000 la tendencia vuelve a ser claramente decreciente, intensificándose después de 2010 hasta alcanzar valores cercanos a 60 en los años más recientes. En conjunto, el comportamiento del indicador evidencia un cambio estructural en los patrones reproductivos adolescentes, posiblemente asociado a transformaciones demográficas, educativas y en políticas de salud pública.
+
+```{r}
+summary(df_3$Value[df_3$Series.Name == "Adolescent fertility rate (births per 1,000 women ages 15-19)"])
+sd(df_3$Value[df_3$Series.Name == 
+   "Adolescent fertility rate (births per 1,000 women ages 15-19)"], 
+   na.rm = TRUE)
+
+```
+
+El indicador presenta un valor mínimo de 59.47 y un máximo de 115.37 nacimientos por cada 1.000 mujeres adolescentes, lo que evidencia una amplitud considerable en el período analizado.
+
+La media (88.19) es ligeramente inferior a la mediana (90.08), lo que sugiere una leve asimetría negativa, consistente con la tendencia descendente observada en los años más recientes.
+
+El 50% central de los datos se encuentra entre 83.95 (Q1) y 94.15 (Q3), indicando que la mayor parte de los valores históricos se concentró en ese rango.
+
+La desviación estándar de 12.69 indica una dispersión moderada respecto a la media. En términos relativos
+(CV: Sirve para medir qué tan grande es la variabilidad en relación con el tamaño del promedio≈ 14%), el indicador presenta variabilidad controlada, consistente con una tendencia descendente progresiva más que con fluctuaciones abruptas.
+
+## Población edad 00 – Mujeres
+
+```{r}
+ggplot(
+  df_3 %>% 
+    filter(Series.Name == "Age population, age 00, female"),
+  aes(x = Year, y = Value)
+) +
+  geom_line(color = "#4A7A9C", size = 1) +
+  theme_minimal() +
+  labs(
+    title = "Población edad 0 – Mujeres (1960–2024)",
+    x = "Año",
+    y = "Número de niñas recién nacidas"
+  )
+```
+
+La población femenina de edad 0 en Colombia muestra un crecimiento sostenido desde 1960 hasta mediados de la década de 1990, pasando de aproximadamente 325.000 nacimientos a un máximo cercano a 440.000. Este incremento refleja el crecimiento demográfico y los altos niveles de fecundidad del período.
+
+A partir de finales de los años 90 se observa una tendencia descendente progresiva, que se intensifica después de 2010, alcanzando uno de sus niveles más bajos alrededor de 2017. En los años recientes se aprecia una leve recuperación, aunque sin alcanzar los máximos históricos.
+
+En conjunto, el comportamiento evidencia el proceso de transición demográfica del país, caracterizado por una reducción sostenida en los niveles de natalidad.
+
+```{r}
+summary(df_3$Value[df_3$Series.Name ==  "Age population, age 00, female"])
+sd(df_3$Value[df_3$Series.Name == 
+   "Age population, age 00, female"], 
+   na.rm = TRUE)
+
+```
+
+La población femenina de edad 0 presenta un valor mínimo de 323.947 y un máximo de 437.818 nacimientos, lo que refleja una variación considerable a lo largo del período analizado.
+
+La media (377.063) es ligeramente superior a la mediana (369.384), lo que indica una leve asimetría positiva, influenciada por los valores más altos registrados durante el pico demográfico de los años 90.
+
+El 50% central de los datos se ubica entre 350.889 (Q1) y 402.517 (Q3), mostrando que la mayoría de los años se concentraron en ese rango. En conjunto, los estadísticos confirman el crecimiento sostenido hasta mediados de los 90 y la posterior disminución observada en el análisis temporal.
+
+La desviación estándar representa aproximadamente el 8.6% de la media, lo que evidencia baja dispersión relativa y confirma un comportamiento demográfico estable en el largo plazo. \## Población edad 00 – Hombres
+
+```{r}
+ggplot(
+  df_3 %>% 
+    filter(Series.Name == "Age population, age 00, male"),
+  aes(x = Year, y = Value)
+) +
+  geom_line(color = "#7BA0B9", size = 1) +
+  theme_minimal() +
+  labs(
+    title = "Población edad 0 – Hombres (1960–2024)",
+    x = "Año",
+    y = "Número de niños recién nacidos"
+  )
+```
+
+La población masculina de edad 0 en Colombia presenta un comportamiento similar al observado en mujeres. Entre 1960 y mediados de los años 90 se evidencia un crecimiento sostenido, pasando de aproximadamente 335.000 nacimientos a un máximo cercano a 455.000.
+
+A partir de finales de los 90 inicia una tendencia descendente progresiva, que se acentúa después de 2010, alcanzando un mínimo alrededor de 2017. Posteriormente se observa una leve recuperación, aunque los niveles recientes permanecen por debajo del pico histórico.
+
+Este patrón confirma el proceso de transición demográfica del país, caracterizado por una disminución estructural en la natalidad.
+
+```{r}
+summary(df_3$Value[df_3$Series.Name ==  "Age population, age 00, male"])
+sd(df_3$Value[df_3$Series.Name == 
+   "Age population, age 00, male"], 
+   na.rm = TRUE)
+```
+
+La población masculina de edad 0 presenta un valor mínimo de 335.109 y un máximo de 453.895 nacimientos, evidenciando una amplitud similar a la observada en mujeres, aunque con niveles consistentemente superiores.
+
+La media (392.092) es ligeramente mayor que la mediana (383.633), lo que indica una leve asimetría positiva, asociada a los valores más altos registrados durante el pico demográfico de los años 90.
+
+El 50% central de los datos se encuentra entre 364.271 (Q1) y 418.678 (Q3), lo que confirma que la mayor parte de los años se concentró en ese intervalo. Estos estadísticos respaldan el patrón de crecimiento sostenido hasta mediados de los 90 y la posterior reducción progresiva de la natalidad.
+
+Con un coeficiente de variación cercano al 8.5%, el indicador presenta una dispersión baja y un patrón altamente consistente a lo largo del tiempo.
+
+```{r}
+
+df_pct <- df_3 %>%
+  group_by(Series.Name) %>%
+  mutate(
+    media_indicador = mean(Value, na.rm = TRUE),
+    cambio_pct_media = ((Value - media_indicador) / media_indicador) * 100
+  )
+
+ggplot(df_pct, aes(x = Year, y = cambio_pct_media)) +
+  geom_line(size = 1) +
+  facet_wrap(~ Series.Name, scales = "free_y") +
+  theme_minimal() +
+  labs(
+    title = "Cambio porcentual respecto a la media histórica",
+    x = "Año",
+    y = "% respecto a la media"
+  )
+```
+
+El análisis del cambio porcentual respecto a la media permite identificar con mayor claridad los períodos estructuralmente altos y bajos de cada indicador.
+
+En la tasa de fecundidad adolescente, los años 60 se ubican más de 25% por encima del promedio histórico, mientras que a partir de 2010 los valores caen progresivamente hasta situarse cerca de 30% por debajo de la media. Esto confirma un cambio estructural profundo en el comportamiento reproductivo adolescente.
+
+En el caso de la población de edad 0 (mujeres y hombres), los valores se mantienen por debajo de la media en los años 60, superan el promedio durante las décadas de 1980 y 1990 (con picos cercanos al 15%), y posteriormente descienden nuevamente por debajo de la media en los años recientes.
+
+La similitud entre hombres y mujeres evidencia un patrón demográfico consistente, mientras que la mayor amplitud observada en la fecundidad adolescente refleja una transformación más dinámica en ese indicador.

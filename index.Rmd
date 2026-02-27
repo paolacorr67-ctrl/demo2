@@ -1,0 +1,28 @@
+--- 
+title: "EDA"
+author: "Natalia Alvarado"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+# url: your book url like https://bookdown.org/yihui/bookdown
+# cover-image: path to the social sharing image like images/cover.jpg
+description: |
+  This is a minimal example of using the bookdown package to write a book.
+  The HTML output format for this example is bookdown::gitbook,
+  set in the _output.yml file.
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+---
+
+
+
+# About
+
+Este libro presenta un Análisis Exploratorio de Datos (EDA) aplicado a indicadores del World Bank para Colombia. El objetivo principal es examinar la estructura, calidad y comportamiento temporal de los datos, identificando patrones, valores atípicos, niveles de cobertura y posibles relaciones entre variables económicas, demográficas y sociales.
+
+El análisis se desarrolla de manera progresiva. En primer lugar, se realiza una exploración univariada para comprender la distribución y características individuales de cada variable. Posteriormente, se estudian relaciones bivariadas y dinámicas temporales que permiten identificar tendencias y asociaciones relevantes en el periodo 1960–2024.
+
+Dado que los indicadores provienen de distintas áreas y escalas de medición, se implementan criterios de depuración y filtrado con el fin de priorizar aquellos con mayor continuidad temporal. Esto garantiza mayor consistencia y confiabilidad en los resultados presentados.
+
+Este documento fue desarrollado utilizando R y el paquete bookdown, integrando análisis reproducible y visualización estadística como parte de un enfoque estructurado de ciencia de datos.
