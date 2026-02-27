@@ -4,6 +4,7 @@ output_dir: "docs"
 language:
   ui:
     chapter_name: "Chapter "
+    lib_dir: "libs"
     
 rmd_files:
   - index.Rmd

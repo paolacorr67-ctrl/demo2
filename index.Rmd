@@ -3,6 +3,7 @@ title: "EDA"
 author: "Natalia Alvarado"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
+base_url: "/demo2/"
 documentclass: book
 bibliography: [book.bib, packages.bib]
 # url: your book url like https://bookdown.org/yihui/bookdown
@@ -13,6 +14,7 @@ description: |
   set in the _output.yml file.
 link-citations: yes
 github-repo: rstudio/bookdown-demo
+
 ---
 
 
