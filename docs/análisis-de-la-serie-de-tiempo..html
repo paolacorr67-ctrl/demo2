@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Análisis de la serie de tiempo. | EDA</title>
+  <title>4 Análisis de la serie de tiempo. | EDA</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Análisis de la serie de tiempo. | EDA" />
+  <meta property="og:title" content="4 Análisis de la serie de tiempo. | EDA" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
@@ -19,7 +19,7 @@ set in the _output.yml file.</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Análisis de la serie de tiempo. | EDA" />
+  <meta name="twitter:title" content="4 Análisis de la serie de tiempo. | EDA" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
@@ -144,7 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
+<li><a href="./">EDA</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a></li>
@@ -179,7 +179,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="conclusión.html"><a href="conclusión.html"><i class="fa fa-check"></i><b>6</b> Conclusión</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-
 </ul>
 
       </nav>
@@ -198,7 +197,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="análisis-de-la-serie-de-tiempo." class="section level1 hasAnchor" number="4">
-<h1><span class="header-section-number">Chapter 4</span> Análisis de la serie de tiempo.<a href="análisis-de-la-serie-de-tiempo..html#an%C3%A1lisis-de-la-serie-de-tiempo." class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<h1><span class="header-section-number">4</span> Análisis de la serie de tiempo.<a href="análisis-de-la-serie-de-tiempo..html#an%C3%A1lisis-de-la-serie-de-tiempo." class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Con el fin de realizar un análisis más profundo y coherente, se seleccionaron tres indicadores específicos: la tasa de fecundidad adolescente y la población de 0 años desagregada por sexo. Esta selección responde a un criterio demográfico, ya que la fecundidad adolescente constituye un determinante relevante en la dinámica poblacional, mientras que el tamaño de la cohorte infantil permite observar los efectos agregados del comportamiento reproductivo en el tiempo.</p>
 <p>El análisis conjunto de estos indicadores permite explorar posibles relaciones entre la evolución de la fecundidad y la estructura etaria temprana en Colombia, facilitando una interpretación más integrada del fenómeno poblacional durante el período 1960–2024. Con el fin de contestar la siguiente pregunta: ¿Existe una relación entre la evolución de la fecundidad adolescente y el tamaño de la cohorte infantil en Colombia desde 1960 hasta 2024?</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="análisis-de-la-serie-de-tiempo..html#cb31-1" tabindex="-1"></a><span class="co">#Filtremos los 3 indicadores que nos interesan.</span></span>
@@ -225,7 +224,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb32-11"><a href="análisis-de-la-serie-de-tiempo..html#cb32-11" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Nacimientos por cada 1.000 mujeres (15–19)&quot;</span></span>
 <span id="cb32-12"><a href="análisis-de-la-serie-de-tiempo..html#cb32-12" tabindex="-1"></a>  )</span></code></pre></div>
 <pre><code>## Warning: Removed 1 row containing missing values or values outside the scale range (`geom_line()`).</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-14-1.png" alt="" width="672" /></p>
+<p><img src="demo2_files/figure-html/unnamed-chunk-14-1.png" alt="" width="672" /></p>
 <p>La tasa de fecundidad adolescente en Colombia presenta una tendencia general descendente entre 1960 y 2024. En los años 60 supera los 110 nacimientos por cada 1.000 mujeres (15–19), disminuye de forma sostenida en los 70 y principios de los 80, y muestra un leve repunte a finales de los 80 y durante los 90.</p>
 <p>A partir de los años 2000 la tendencia vuelve a ser claramente decreciente, intensificándose después de 2010 hasta alcanzar valores cercanos a 60 en los años más recientes. En conjunto, el comportamiento del indicador evidencia un cambio estructural en los patrones reproductivos adolescentes, posiblemente asociado a transformaciones demográficas, educativas y en políticas de salud pública.</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="análisis-de-la-serie-de-tiempo..html#cb34-1" tabindex="-1"></a><span class="fu">summary</span>(df_3<span class="sc">$</span>Value[df_3<span class="sc">$</span>Series.Name <span class="sc">==</span> <span class="st">&quot;Adolescent fertility rate (births per 1,000 women ages 15-19)&quot;</span>])</span></code></pre></div>
@@ -255,7 +254,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb38-10"><a href="análisis-de-la-serie-de-tiempo..html#cb38-10" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Año&quot;</span>,</span>
 <span id="cb38-11"><a href="análisis-de-la-serie-de-tiempo..html#cb38-11" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Número de niñas recién nacidas&quot;</span></span>
 <span id="cb38-12"><a href="análisis-de-la-serie-de-tiempo..html#cb38-12" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-16-1.png" alt="" width="672" /></p>
+<p><img src="demo2_files/figure-html/unnamed-chunk-16-1.png" alt="" width="672" /></p>
 <p>La población femenina de edad 0 en Colombia muestra un crecimiento sostenido desde 1960 hasta mediados de la década de 1990, pasando de aproximadamente 325.000 nacimientos a un máximo cercano a 440.000. Este incremento refleja el crecimiento demográfico y los altos niveles de fecundidad del período.</p>
 <p>A partir de finales de los años 90 se observa una tendencia descendente progresiva, que se intensifica después de 2010, alcanzando uno de sus niveles más bajos alrededor de 2017. En los años recientes se aprecia una leve recuperación, aunque sin alcanzar los máximos históricos.</p>
 <p>En conjunto, el comportamiento evidencia el proceso de transición demográfica del país, caracterizado por una reducción sostenida en los niveles de natalidad.</p>
@@ -282,7 +281,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb43-10"><a href="análisis-de-la-serie-de-tiempo..html#cb43-10" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Año&quot;</span>,</span>
 <span id="cb43-11"><a href="análisis-de-la-serie-de-tiempo..html#cb43-11" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Número de niños recién nacidos&quot;</span></span>
 <span id="cb43-12"><a href="análisis-de-la-serie-de-tiempo..html#cb43-12" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-18-1.png" alt="" width="672" /></p>
+<p><img src="demo2_files/figure-html/unnamed-chunk-18-1.png" alt="" width="672" /></p>
 <p>La población masculina de edad 0 en Colombia presenta un comportamiento similar al observado en mujeres. Entre 1960 y mediados de los años 90 se evidencia un crecimiento sostenido, pasando de aproximadamente 335.000 nacimientos a un máximo cercano a 455.000.</p>
 <p>A partir de finales de los 90 inicia una tendencia descendente progresiva, que se acentúa después de 2010, alcanzando un mínimo alrededor de 2017. Posteriormente se observa una leve recuperación, aunque los niveles recientes permanecen por debajo del pico histórico.</p>
 <p>Este patrón confirma el proceso de transición demográfica del país, caracterizado por una disminución estructural en la natalidad.</p>
@@ -314,7 +313,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb48-15"><a href="análisis-de-la-serie-de-tiempo..html#cb48-15" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;% respecto a la media&quot;</span></span>
 <span id="cb48-16"><a href="análisis-de-la-serie-de-tiempo..html#cb48-16" tabindex="-1"></a>  )</span></code></pre></div>
 <pre><code>## Warning: Removed 1 row containing missing values or values outside the scale range (`geom_line()`).</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-20-1.png" alt="" width="672" /></p>
+<p><img src="demo2_files/figure-html/unnamed-chunk-20-1.png" alt="" width="672" /></p>
 <p>El análisis del cambio porcentual respecto a la media permite identificar con mayor claridad los períodos estructuralmente altos y bajos de cada indicador.</p>
 <p>En la tasa de fecundidad adolescente, los años 60 se ubican más de 25% por encima del promedio histórico, mientras que a partir de 2010 los valores caen progresivamente hasta situarse cerca de 30% por debajo de la media. Esto confirma un cambio estructural profundo en el comportamiento reproductivo adolescente.</p>
 <p>En el caso de la población de edad 0 (mujeres y hombres), los valores se mantienen por debajo de la media en los años 60, superan el promedio durante las décadas de 1980 y 1990 (con picos cercanos al 15%), y posteriormente descienden nuevamente por debajo de la media en los años recientes.</p>
@@ -359,8 +358,8 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-serietiempo.Rmd",
-    "text": "Edit"
+    "link": null,
+    "text": null
   },
   "history": {
     "link": null,
@@ -370,7 +369,7 @@ gitbook.start({
     "link": null,
     "text": null
   },
-  "download": ["_main.pdf", "_main.epub"],
+  "download": null,
   "search": {
     "engine": "fuse",
     "options": null
