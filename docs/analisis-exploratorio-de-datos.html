@@ -147,7 +147,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">EDA</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> About</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a></li>
 <li class="chapter" data-level="2" data-path="analisis-exploratorio-de-datos.html"><a href="analisis-exploratorio-de-datos.html"><i class="fa fa-check"></i><b>2</b> ANALISIS EXPLORATORIO DE DATOS</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="analisis-exploratorio-de-datos.html"><a href="analisis-exploratorio-de-datos.html#carga-del-dataset"><i class="fa fa-check"></i><b>2.1</b> CARGA DEL DATASET</a></li>
@@ -209,69 +209,111 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-3"><a href="analisis-exploratorio-de-datos.html#cb1-3" tabindex="-1"></a><span class="co"># Eliminamos las últimas 5 filas que no necesitamos porque son la fuente y la fecha de actualización </span></span>
 <span id="cb1-4"><a href="analisis-exploratorio-de-datos.html#cb1-4" tabindex="-1"></a>df <span class="ot">&lt;-</span> df[<span class="dv">1</span><span class="sc">:</span><span class="dv">474</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">69</span>]</span>
 <span id="cb1-5"><a href="analisis-exploratorio-de-datos.html#cb1-5" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
-<pre><code>##                                                          Series.Name    Series.Code Country.Name Country.Code X1960..YR1960.
-## 1      Adolescent fertility rate (births per 1,000 women ages 15-19)    SP.ADO.TFRT     Colombia          COL        115.373
-## 2        Adults (ages 15+) and children (0-14 years) living with HIV    SH.HIV.TOTL     Colombia          COL             ..
-## 3 Adults (ages 15+) and children (ages 0-14) newly infected with HIV SH.HIV.INCD.TL     Colombia          COL             ..
-## 4                                  Adults (ages 15+) living with HIV    SH.DYN.AIDS     Colombia          COL             ..
-## 5                        Adults (ages 15-49) newly infected with HIV    SH.HIV.INCD     Colombia          COL             ..
-## 6                                      Age at first marriage, female SP.DYN.SMAM.FE     Colombia          COL             ..
-##   X1961..YR1961. X1962..YR1962. X1963..YR1963. X1964..YR1964. X1965..YR1965. X1966..YR1966. X1967..YR1967. X1968..YR1968.
-## 1        113.802        112.147        110.377        107.885        104.921         101.64        100.751         98.832
-## 2             ..             ..             ..             ..             ..             ..             ..             ..
-## 3             ..             ..             ..             ..             ..             ..             ..             ..
-## 4             ..             ..             ..             ..             ..             ..             ..             ..
-## 5             ..             ..             ..             ..             ..             ..             ..             ..
-## 6             ..             ..             ..             ..             ..             ..             ..             ..
-##   X1969..YR1969. X1970..YR1970. X1971..YR1971. X1972..YR1972. X1973..YR1973. X1974..YR1974. X1975..YR1975. X1976..YR1976.
-## 1         97.192         95.535          93.77         92.418         91.533         90.561         90.435         89.485
-## 2             ..             ..             ..             ..             ..             ..             ..             ..
-## 3             ..             ..             ..             ..             ..             ..             ..             ..
-## 4             ..             ..             ..             ..             ..             ..             ..             ..
-## 5             ..             ..             ..             ..             ..             ..             ..             ..
-## 6             ..             ..             ..             ..           22.5             ..             ..             ..
-##   X1977..YR1977. X1978..YR1978. X1979..YR1979. X1980..YR1980. X1981..YR1981. X1982..YR1982. X1983..YR1983. X1984..YR1984.
-## 1         89.717         88.854         88.778         89.077         88.619         88.084         85.035         83.074
-## 2             ..             ..             ..             ..             ..             ..             ..             ..
-## 3             ..             ..             ..             ..             ..             ..             ..             ..
-## 4             ..             ..             ..             ..             ..             ..             ..             ..
-## 5             ..             ..             ..             ..             ..             ..             ..             ..
-## 6             ..             ..             ..             ..             ..             ..             ..             ..
-##   X1985..YR1985. X1986..YR1986. X1987..YR1987. X1988..YR1988. X1989..YR1989. X1990..YR1990. X1991..YR1991. X1992..YR1992.
-## 1         83.795         85.222          86.97         88.673         90.893         93.191         94.336         94.616
-## 2             ..             ..             ..             ..             ..          17000          23000          31000
-## 3             ..             ..             ..             ..             ..           5600           7300           9000
-## 4             ..             ..             ..             ..             ..          16000          22000          30000
-## 5             ..             ..             ..             ..             ..           4900           6400           8000
-## 6           22.7           23.5             ..             ..             ..           23.1             ..             ..
-##   X1993..YR1993. X1994..YR1994. X1995..YR1995. X1996..YR1996. X1997..YR1997. X1998..YR1998. X1999..YR1999. X2000..YR2000.
-## 1         94.564         93.378         91.891         92.484         91.732         92.256         94.471         94.496
-## 2          40000          50000          60000          70000          80000          89000          97000         100000
-## 3          11000          12000          13000          14000          14000          14000          14000          13000
-## 4          38000          48000          58000          68000          77000          86000          94000         100000
-## 5           9600          11000          12000          12000          12000          12000          12000          12000
-## 6           22.5             ..           22.2             ..             ..             ..             ..           23.1
-##   X2001..YR2001. X2002..YR2002. X2003..YR2003. X2004..YR2004. X2005..YR2005. X2006..YR2006. X2007..YR2007. X2008..YR2008.
-## 1         94.082         94.017         92.662         90.596         88.124         87.744         87.382         86.294
-## 2         110000         110000         120000         120000         130000         130000         130000         140000
-## 3          12000          12000          12000          12000          11000          11000          11000          12000
-## 4         110000         110000         110000         120000         120000         130000         130000         130000
-## 5          11000          11000          11000          10000          10000          10000          10000          11000
-## 6             ..             ..             ..             ..             23           23.1             ..             ..
-##   X2009..YR2009. X2010..YR2010. X2011..YR2011. X2012..YR2012. X2013..YR2013. X2014..YR2014. X2015..YR2015. X2016..YR2016.
-## 1         84.007         81.306         79.439         79.556         77.499          73.82         69.785          66.84
-## 2         140000         140000         140000         150000         150000         160000         160000         170000
-## 3          12000          12000          11000          11000          11000          11000          11000          11000
-## 4         140000         140000         140000         150000         150000         150000         160000         170000
-## 5          11000          10000           9700           9700           9800           9700           9900           9600
-## 6             ..           22.3             ..             ..             ..             ..           22.7             ..
-##   X2017..YR2017. X2018..YR2018. X2019..YR2019. X2020..YR2020. X2021..YR2021. X2022..YR2022. X2023..YR2023. X2024..YR2024.
-## 1         65.985          65.17         64.278         62.885         62.023         60.175         59.473             ..
-## 2         170000         180000         190000         200000         210000         220000         230000         230000
-## 3          12000          12000          12000          12000          12000          13000          12000             ..
-## 4         170000         180000         190000         200000         210000         220000         230000         230000
-## 5          10000          11000          11000          10000          11000          11000          11000             ..
-## 6             ..             ..             ..             ..             ..             ..             ..             ..</code></pre>
+<pre><code>##                                                          Series.Name
+## 1      Adolescent fertility rate (births per 1,000 women ages 15-19)
+## 2        Adults (ages 15+) and children (0-14 years) living with HIV
+## 3 Adults (ages 15+) and children (ages 0-14) newly infected with HIV
+## 4                                  Adults (ages 15+) living with HIV
+## 5                        Adults (ages 15-49) newly infected with HIV
+## 6                                      Age at first marriage, female
+##      Series.Code Country.Name Country.Code X1960..YR1960. X1961..YR1961.
+## 1    SP.ADO.TFRT     Colombia          COL        115.373        113.802
+## 2    SH.HIV.TOTL     Colombia          COL             ..             ..
+## 3 SH.HIV.INCD.TL     Colombia          COL             ..             ..
+## 4    SH.DYN.AIDS     Colombia          COL             ..             ..
+## 5    SH.HIV.INCD     Colombia          COL             ..             ..
+## 6 SP.DYN.SMAM.FE     Colombia          COL             ..             ..
+##   X1962..YR1962. X1963..YR1963. X1964..YR1964. X1965..YR1965. X1966..YR1966.
+## 1        112.147        110.377        107.885        104.921         101.64
+## 2             ..             ..             ..             ..             ..
+## 3             ..             ..             ..             ..             ..
+## 4             ..             ..             ..             ..             ..
+## 5             ..             ..             ..             ..             ..
+## 6             ..             ..             ..             ..             ..
+##   X1967..YR1967. X1968..YR1968. X1969..YR1969. X1970..YR1970. X1971..YR1971.
+## 1        100.751         98.832         97.192         95.535          93.77
+## 2             ..             ..             ..             ..             ..
+## 3             ..             ..             ..             ..             ..
+## 4             ..             ..             ..             ..             ..
+## 5             ..             ..             ..             ..             ..
+## 6             ..             ..             ..             ..             ..
+##   X1972..YR1972. X1973..YR1973. X1974..YR1974. X1975..YR1975. X1976..YR1976.
+## 1         92.418         91.533         90.561         90.435         89.485
+## 2             ..             ..             ..             ..             ..
+## 3             ..             ..             ..             ..             ..
+## 4             ..             ..             ..             ..             ..
+## 5             ..             ..             ..             ..             ..
+## 6             ..           22.5             ..             ..             ..
+##   X1977..YR1977. X1978..YR1978. X1979..YR1979. X1980..YR1980. X1981..YR1981.
+## 1         89.717         88.854         88.778         89.077         88.619
+## 2             ..             ..             ..             ..             ..
+## 3             ..             ..             ..             ..             ..
+## 4             ..             ..             ..             ..             ..
+## 5             ..             ..             ..             ..             ..
+## 6             ..             ..             ..             ..             ..
+##   X1982..YR1982. X1983..YR1983. X1984..YR1984. X1985..YR1985. X1986..YR1986.
+## 1         88.084         85.035         83.074         83.795         85.222
+## 2             ..             ..             ..             ..             ..
+## 3             ..             ..             ..             ..             ..
+## 4             ..             ..             ..             ..             ..
+## 5             ..             ..             ..             ..             ..
+## 6             ..             ..             ..           22.7           23.5
+##   X1987..YR1987. X1988..YR1988. X1989..YR1989. X1990..YR1990. X1991..YR1991.
+## 1          86.97         88.673         90.893         93.191         94.336
+## 2             ..             ..             ..          17000          23000
+## 3             ..             ..             ..           5600           7300
+## 4             ..             ..             ..          16000          22000
+## 5             ..             ..             ..           4900           6400
+## 6             ..             ..             ..           23.1             ..
+##   X1992..YR1992. X1993..YR1993. X1994..YR1994. X1995..YR1995. X1996..YR1996.
+## 1         94.616         94.564         93.378         91.891         92.484
+## 2          31000          40000          50000          60000          70000
+## 3           9000          11000          12000          13000          14000
+## 4          30000          38000          48000          58000          68000
+## 5           8000           9600          11000          12000          12000
+## 6             ..           22.5             ..           22.2             ..
+##   X1997..YR1997. X1998..YR1998. X1999..YR1999. X2000..YR2000. X2001..YR2001.
+## 1         91.732         92.256         94.471         94.496         94.082
+## 2          80000          89000          97000         100000         110000
+## 3          14000          14000          14000          13000          12000
+## 4          77000          86000          94000         100000         110000
+## 5          12000          12000          12000          12000          11000
+## 6             ..             ..             ..           23.1             ..
+##   X2002..YR2002. X2003..YR2003. X2004..YR2004. X2005..YR2005. X2006..YR2006.
+## 1         94.017         92.662         90.596         88.124         87.744
+## 2         110000         120000         120000         130000         130000
+## 3          12000          12000          12000          11000          11000
+## 4         110000         110000         120000         120000         130000
+## 5          11000          11000          10000          10000          10000
+## 6             ..             ..             ..             23           23.1
+##   X2007..YR2007. X2008..YR2008. X2009..YR2009. X2010..YR2010. X2011..YR2011.
+## 1         87.382         86.294         84.007         81.306         79.439
+## 2         130000         140000         140000         140000         140000
+## 3          11000          12000          12000          12000          11000
+## 4         130000         130000         140000         140000         140000
+## 5          10000          11000          11000          10000           9700
+## 6             ..             ..             ..           22.3             ..
+##   X2012..YR2012. X2013..YR2013. X2014..YR2014. X2015..YR2015. X2016..YR2016.
+## 1         79.556         77.499          73.82         69.785          66.84
+## 2         150000         150000         160000         160000         170000
+## 3          11000          11000          11000          11000          11000
+## 4         150000         150000         150000         160000         170000
+## 5           9700           9800           9700           9900           9600
+## 6             ..             ..             ..           22.7             ..
+##   X2017..YR2017. X2018..YR2018. X2019..YR2019. X2020..YR2020. X2021..YR2021.
+## 1         65.985          65.17         64.278         62.885         62.023
+## 2         170000         180000         190000         200000         210000
+## 3          12000          12000          12000          12000          12000
+## 4         170000         180000         190000         200000         210000
+## 5          10000          11000          11000          10000          11000
+## 6             ..             ..             ..             ..             ..
+##   X2022..YR2022. X2023..YR2023. X2024..YR2024.
+## 1         60.175         59.473             ..
+## 2         220000         230000         230000
+## 3          13000          12000             ..
+## 4         220000         230000         230000
+## 5          11000          11000             ..
+## 6             ..             ..             ..</code></pre>
 </div>
 <div id="dimensión-de-nuestro-dataset" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> Dimensión de nuestro dataset<a href="analisis-exploratorio-de-datos.html#dimensi%C3%B3n-de-nuestro-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -297,39 +339,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">2.4</span> Transformación del dataset<a href="analisis-exploratorio-de-datos.html#transformaci%C3%B3n-del-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>El formato ancho dificulta la manipulación, visualización y análisis de series temporales, por lo que se realizó una transformación a formato largo siguiendo el principio de tidy data.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="analisis-exploratorio-de-datos.html#cb5-1" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb5-2"><a href="analisis-exploratorio-de-datos.html#cb5-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb5-3"><a href="analisis-exploratorio-de-datos.html#cb5-3" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="analisis-exploratorio-de-datos.html#cb5-4" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb5-5"><a href="analisis-exploratorio-de-datos.html#cb5-5" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb5-6"><a href="analisis-exploratorio-de-datos.html#cb5-6" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(Series.Name, Series.Code, Country.Name, Country.Code),</span>
-<span id="cb5-7"><a href="analisis-exploratorio-de-datos.html#cb5-7" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">&quot;Year&quot;</span>,</span>
-<span id="cb5-8"><a href="analisis-exploratorio-de-datos.html#cb5-8" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">&quot;Value&quot;</span></span>
-<span id="cb5-9"><a href="analisis-exploratorio-de-datos.html#cb5-9" tabindex="-1"></a>  )</span>
-<span id="cb5-10"><a href="analisis-exploratorio-de-datos.html#cb5-10" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="analisis-exploratorio-de-datos.html#cb5-11" tabindex="-1"></a>df_long<span class="sc">$</span>Year <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;X|</span><span class="sc">\\</span><span class="st">.</span><span class="sc">\\</span><span class="st">.YR.*&quot;</span>, <span class="st">&quot;&quot;</span>, df_long<span class="sc">$</span>Year)</span>
-<span id="cb5-12"><a href="analisis-exploratorio-de-datos.html#cb5-12" tabindex="-1"></a><span class="fu">head</span>(df_long)</span></code></pre></div>
+<span id="cb5-2"><a href="analisis-exploratorio-de-datos.html#cb5-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
+<pre><code>## 
+## Adjuntando el paquete: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="analisis-exploratorio-de-datos.html#cb9-1" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="analisis-exploratorio-de-datos.html#cb9-2" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb9-3"><a href="analisis-exploratorio-de-datos.html#cb9-3" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(Series.Name, Series.Code, Country.Name, Country.Code),</span>
+<span id="cb9-4"><a href="analisis-exploratorio-de-datos.html#cb9-4" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb9-5"><a href="analisis-exploratorio-de-datos.html#cb9-5" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">&quot;Value&quot;</span></span>
+<span id="cb9-6"><a href="analisis-exploratorio-de-datos.html#cb9-6" tabindex="-1"></a>  )</span>
+<span id="cb9-7"><a href="analisis-exploratorio-de-datos.html#cb9-7" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="analisis-exploratorio-de-datos.html#cb9-8" tabindex="-1"></a>df_long<span class="sc">$</span>Year <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;X|</span><span class="sc">\\</span><span class="st">.</span><span class="sc">\\</span><span class="st">.YR.*&quot;</span>, <span class="st">&quot;&quot;</span>, df_long<span class="sc">$</span>Year)</span>
+<span id="cb9-9"><a href="analisis-exploratorio-de-datos.html#cb9-9" tabindex="-1"></a><span class="fu">head</span>(df_long)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 6
-##   Series.Name                                                   Series.Code Country.Name Country.Code Year  Value  
-##   &lt;chr&gt;                                                         &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt;  
-## 1 Adolescent fertility rate (births per 1,000 women ages 15-19) SP.ADO.TFRT Colombia     COL          1960  115.373
-## 2 Adolescent fertility rate (births per 1,000 women ages 15-19) SP.ADO.TFRT Colombia     COL          1961  113.802
-## 3 Adolescent fertility rate (births per 1,000 women ages 15-19) SP.ADO.TFRT Colombia     COL          1962  112.147
-## 4 Adolescent fertility rate (births per 1,000 women ages 15-19) SP.ADO.TFRT Colombia     COL          1963  110.377
-## 5 Adolescent fertility rate (births per 1,000 women ages 15-19) SP.ADO.TFRT Colombia     COL          1964  107.885
-## 6 Adolescent fertility rate (births per 1,000 women ages 15-19) SP.ADO.TFRT Colombia     COL          1965  104.921</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="analisis-exploratorio-de-datos.html#cb7-1" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> df_long <span class="sc">%&gt;%</span></span>
-<span id="cb7-2"><a href="analisis-exploratorio-de-datos.html#cb7-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb7-3"><a href="analisis-exploratorio-de-datos.html#cb7-3" tabindex="-1"></a>    <span class="at">Value =</span> <span class="fu">ifelse</span>(Value <span class="sc">==</span> <span class="st">&quot;..&quot;</span>, <span class="cn">NA</span>, Value),  <span class="co"># &quot;..&quot; pasa a NA</span></span>
-<span id="cb7-4"><a href="analisis-exploratorio-de-datos.html#cb7-4" tabindex="-1"></a>    <span class="at">Value =</span> <span class="fu">as.numeric</span>(Value), <span class="co"># Convertimos a numérico</span></span>
-<span id="cb7-5"><a href="analisis-exploratorio-de-datos.html#cb7-5" tabindex="-1"></a>    <span class="at">Year =</span> <span class="fu">as.Date</span>(<span class="fu">paste0</span>(Year, <span class="st">&quot;-01-01&quot;</span>))</span>
-<span id="cb7-6"><a href="analisis-exploratorio-de-datos.html#cb7-6" tabindex="-1"></a>  )</span></code></pre></div>
+##   Series.Name                  Series.Code Country.Name Country.Code Year  Value
+##   &lt;chr&gt;                        &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt;
+## 1 Adolescent fertility rate (… SP.ADO.TFRT Colombia     COL          1960  115.…
+## 2 Adolescent fertility rate (… SP.ADO.TFRT Colombia     COL          1961  113.…
+## 3 Adolescent fertility rate (… SP.ADO.TFRT Colombia     COL          1962  112.…
+## 4 Adolescent fertility rate (… SP.ADO.TFRT Colombia     COL          1963  110.…
+## 5 Adolescent fertility rate (… SP.ADO.TFRT Colombia     COL          1964  107.…
+## 6 Adolescent fertility rate (… SP.ADO.TFRT Colombia     COL          1965  104.…</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="analisis-exploratorio-de-datos.html#cb11-1" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> df_long <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="analisis-exploratorio-de-datos.html#cb11-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb11-3"><a href="analisis-exploratorio-de-datos.html#cb11-3" tabindex="-1"></a>    <span class="at">Value =</span> <span class="fu">ifelse</span>(Value <span class="sc">==</span> <span class="st">&quot;..&quot;</span>, <span class="cn">NA</span>, Value),  <span class="co"># &quot;..&quot; pasa a NA</span></span>
+<span id="cb11-4"><a href="analisis-exploratorio-de-datos.html#cb11-4" tabindex="-1"></a>    <span class="at">Value =</span> <span class="fu">as.numeric</span>(Value), <span class="co"># Convertimos a numérico</span></span>
+<span id="cb11-5"><a href="analisis-exploratorio-de-datos.html#cb11-5" tabindex="-1"></a>    <span class="at">Year =</span> <span class="fu">as.Date</span>(<span class="fu">paste0</span>(Year, <span class="st">&quot;-01-01&quot;</span>))</span>
+<span id="cb11-6"><a href="analisis-exploratorio-de-datos.html#cb11-6" tabindex="-1"></a>  )</span></code></pre></div>
 <p>Puesto que el presente análisis se enfoca exclusivamente en Colombia, las columnas Country.Name y Country.Code resultan redundantes, ya que todos los registros corresponden al mismo país. De manera similar, la columna Series.Code, si bien contiene información valiosa sobre la codificación de los indicadores, no es necesaria para el análisis descriptivo y visual que se realizará, donde el nombre del indicador (Series.Name) proporciona contexto suficiente. Por lo tanto, se procede a eliminar estas columnas para trabajar con un dataset más limpio y eficiente, conservando únicamente las variables esenciales: Series.Name (nombre del indicador), Year (año) y Value (valor del indicador).</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="analisis-exploratorio-de-datos.html#cb8-1" tabindex="-1"></a><span class="co"># Eliminar las columnas Country.Name y Country.Code y Series.Code</span></span>
-<span id="cb8-2"><a href="analisis-exploratorio-de-datos.html#cb8-2" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="analisis-exploratorio-de-datos.html#cb8-3" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> df_long <span class="sc">%&gt;%</span></span>
-<span id="cb8-4"><a href="analisis-exploratorio-de-datos.html#cb8-4" tabindex="-1"></a>  <span class="fu">select</span>(Series.Name, Year, Value)</span>
-<span id="cb8-5"><a href="analisis-exploratorio-de-datos.html#cb8-5" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="analisis-exploratorio-de-datos.html#cb8-6" tabindex="-1"></a><span class="fu">head</span>(df_long)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="analisis-exploratorio-de-datos.html#cb12-1" tabindex="-1"></a><span class="co"># Eliminar las columnas Country.Name y Country.Code y Series.Code</span></span>
+<span id="cb12-2"><a href="analisis-exploratorio-de-datos.html#cb12-2" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="analisis-exploratorio-de-datos.html#cb12-3" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> df_long <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="analisis-exploratorio-de-datos.html#cb12-4" tabindex="-1"></a>  <span class="fu">select</span>(Series.Name, Year, Value)</span>
+<span id="cb12-5"><a href="analisis-exploratorio-de-datos.html#cb12-5" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="analisis-exploratorio-de-datos.html#cb12-6" tabindex="-1"></a><span class="fu">head</span>(df_long)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 3
 ##   Series.Name                                                   Year       Value
 ##   &lt;chr&gt;                                                         &lt;date&gt;     &lt;dbl&gt;
