@@ -199,19 +199,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="análisis-bivariado" class="section level1 hasAnchor" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Análisis bivariado<a href="análisis-bivariado.html#an%C3%A1lisis-bivariado" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="análisis-bivariado.html#cb55-1" tabindex="-1"></a><span class="co"># Relación entre fecundidad adolescente y población infantil</span></span>
-<span id="cb55-2"><a href="análisis-bivariado.html#cb55-2" tabindex="-1"></a>df_relacion <span class="ot">&lt;-</span> df_3 <span class="sc">%&gt;%</span></span>
-<span id="cb55-3"><a href="análisis-bivariado.html#cb55-3" tabindex="-1"></a>  <span class="fu">select</span>(Year, Series.Name, Value) <span class="sc">%&gt;%</span></span>
-<span id="cb55-4"><a href="análisis-bivariado.html#cb55-4" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Series.Name, <span class="at">values_from =</span> Value)</span>
-<span id="cb55-5"><a href="análisis-bivariado.html#cb55-5" tabindex="-1"></a></span>
-<span id="cb55-6"><a href="análisis-bivariado.html#cb55-6" tabindex="-1"></a><span class="co"># Renombrar columnas para facilitar</span></span>
-<span id="cb55-7"><a href="análisis-bivariado.html#cb55-7" tabindex="-1"></a><span class="fu">colnames</span>(df_relacion) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Fecundidad_Adolescente&quot;</span>, <span class="st">&quot;Poblacion_Femenina_0&quot;</span>, <span class="st">&quot;Poblacion_Masculina_0&quot;</span>)</span>
-<span id="cb55-8"><a href="análisis-bivariado.html#cb55-8" tabindex="-1"></a></span>
-<span id="cb55-9"><a href="análisis-bivariado.html#cb55-9" tabindex="-1"></a><span class="co"># Calcular población infantil total</span></span>
-<span id="cb55-10"><a href="análisis-bivariado.html#cb55-10" tabindex="-1"></a>df_relacion<span class="sc">$</span>Poblacion_Infantil_Total <span class="ot">&lt;-</span> df_relacion<span class="sc">$</span>Poblacion_Femenina_0 <span class="sc">+</span> df_relacion<span class="sc">$</span>Poblacion_Masculina_0</span>
-<span id="cb55-11"><a href="análisis-bivariado.html#cb55-11" tabindex="-1"></a></span>
-<span id="cb55-12"><a href="análisis-bivariado.html#cb55-12" tabindex="-1"></a><span class="co"># Correlación</span></span>
-<span id="cb55-13"><a href="análisis-bivariado.html#cb55-13" tabindex="-1"></a><span class="fu">cor.test</span>(df_relacion<span class="sc">$</span>Fecundidad_Adolescente, df_relacion<span class="sc">$</span>Poblacion_Infantil_Total, <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="análisis-bivariado.html#cb50-1" tabindex="-1"></a><span class="co"># Relación entre fecundidad adolescente y población infantil</span></span>
+<span id="cb50-2"><a href="análisis-bivariado.html#cb50-2" tabindex="-1"></a>df_relacion <span class="ot">&lt;-</span> df_3 <span class="sc">%&gt;%</span></span>
+<span id="cb50-3"><a href="análisis-bivariado.html#cb50-3" tabindex="-1"></a>  <span class="fu">select</span>(Year, Series.Name, Value) <span class="sc">%&gt;%</span></span>
+<span id="cb50-4"><a href="análisis-bivariado.html#cb50-4" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Series.Name, <span class="at">values_from =</span> Value)</span>
+<span id="cb50-5"><a href="análisis-bivariado.html#cb50-5" tabindex="-1"></a></span>
+<span id="cb50-6"><a href="análisis-bivariado.html#cb50-6" tabindex="-1"></a><span class="co"># Renombrar columnas para facilitar</span></span>
+<span id="cb50-7"><a href="análisis-bivariado.html#cb50-7" tabindex="-1"></a><span class="fu">colnames</span>(df_relacion) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Year&quot;</span>, <span class="st">&quot;Fecundidad_Adolescente&quot;</span>, <span class="st">&quot;Poblacion_Femenina_0&quot;</span>, <span class="st">&quot;Poblacion_Masculina_0&quot;</span>)</span>
+<span id="cb50-8"><a href="análisis-bivariado.html#cb50-8" tabindex="-1"></a></span>
+<span id="cb50-9"><a href="análisis-bivariado.html#cb50-9" tabindex="-1"></a><span class="co"># Calcular población infantil total</span></span>
+<span id="cb50-10"><a href="análisis-bivariado.html#cb50-10" tabindex="-1"></a>df_relacion<span class="sc">$</span>Poblacion_Infantil_Total <span class="ot">&lt;-</span> df_relacion<span class="sc">$</span>Poblacion_Femenina_0 <span class="sc">+</span> df_relacion<span class="sc">$</span>Poblacion_Masculina_0</span>
+<span id="cb50-11"><a href="análisis-bivariado.html#cb50-11" tabindex="-1"></a></span>
+<span id="cb50-12"><a href="análisis-bivariado.html#cb50-12" tabindex="-1"></a><span class="co"># Correlación</span></span>
+<span id="cb50-13"><a href="análisis-bivariado.html#cb50-13" tabindex="-1"></a><span class="fu">cor.test</span>(df_relacion<span class="sc">$</span>Fecundidad_Adolescente, df_relacion<span class="sc">$</span>Poblacion_Infantil_Total, <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
@@ -223,20 +223,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## sample estimates:
 ##       cor 
 ## 0.1946023</code></pre>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="análisis-bivariado.html#cb57-1" tabindex="-1"></a><span class="co"># Visualizar relación</span></span>
-<span id="cb57-2"><a href="análisis-bivariado.html#cb57-2" tabindex="-1"></a><span class="fu">ggplot</span>(df_relacion, <span class="fu">aes</span>(<span class="at">x =</span> Fecundidad_Adolescente, <span class="at">y =</span> Poblacion_Infantil_Total)) <span class="sc">+</span></span>
-<span id="cb57-3"><a href="análisis-bivariado.html#cb57-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;#1F4E79&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb57-4"><a href="análisis-bivariado.html#cb57-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">&quot;#F18F01&quot;</span>) <span class="sc">+</span></span>
-<span id="cb57-5"><a href="análisis-bivariado.html#cb57-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb57-6"><a href="análisis-bivariado.html#cb57-6" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb57-7"><a href="análisis-bivariado.html#cb57-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Relación entre fecundidad adolescente y población infantil total&quot;</span>,</span>
-<span id="cb57-8"><a href="análisis-bivariado.html#cb57-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Tasa de fecundidad adolescente&quot;</span>,</span>
-<span id="cb57-9"><a href="análisis-bivariado.html#cb57-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Población infantil total (edad 0)&quot;</span></span>
-<span id="cb57-10"><a href="análisis-bivariado.html#cb57-10" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="análisis-bivariado.html#cb52-1" tabindex="-1"></a><span class="co"># Visualizar relación</span></span>
+<span id="cb52-2"><a href="análisis-bivariado.html#cb52-2" tabindex="-1"></a><span class="fu">ggplot</span>(df_relacion, <span class="fu">aes</span>(<span class="at">x =</span> Fecundidad_Adolescente, <span class="at">y =</span> Poblacion_Infantil_Total)) <span class="sc">+</span></span>
+<span id="cb52-3"><a href="análisis-bivariado.html#cb52-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;#1F4E79&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb52-4"><a href="análisis-bivariado.html#cb52-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">&quot;#F18F01&quot;</span>) <span class="sc">+</span></span>
+<span id="cb52-5"><a href="análisis-bivariado.html#cb52-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb52-6"><a href="análisis-bivariado.html#cb52-6" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb52-7"><a href="análisis-bivariado.html#cb52-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Relación entre fecundidad adolescente y población infantil total&quot;</span>,</span>
+<span id="cb52-8"><a href="análisis-bivariado.html#cb52-8" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Tasa de fecundidad adolescente&quot;</span>,</span>
+<span id="cb52-9"><a href="análisis-bivariado.html#cb52-9" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Población infantil total (edad 0)&quot;</span></span>
+<span id="cb52-10"><a href="análisis-bivariado.html#cb52-10" tabindex="-1"></a>  )</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
 <pre><code>## Warning: Removed 1 row containing non-finite outside the scale range (`stat_smooth()`).</code></pre>
 <pre><code>## Warning: Removed 1 row containing missing values or values outside the scale range (`geom_point()`).</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-21-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-44-1.png" alt="" width="672" /></p>
 <ul>
 <li><p>0.1946 es una correlación positiva muy débil,indica que existe una leve tendencia a que cuando aumenta la fecundidad adolescente, también aumente la población infantil total, pero la relación es muy tenue.</p></li>
 <li><p>p = 0.1233 &gt; 0.05, No hay evidencia estadísticamente significativa para afirmar que existe una correlación entre la fecundidad adolescente y la población infantil total en Colombia durante el período analizado.</p></li>
@@ -249,17 +249,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="prueba-con-rezagos" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Prueba con rezagos<a href="análisis-bivariado.html#prueba-con-rezagos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>El objetivo fundamental de aplicar rezagos es entender relaciones de causa-efecto a lo largo del tiempo</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="análisis-bivariado.html#cb61-1" tabindex="-1"></a><span class="co"># Crear rezagos de 5, 10 y 15 años</span></span>
-<span id="cb61-2"><a href="análisis-bivariado.html#cb61-2" tabindex="-1"></a>df_rezagos <span class="ot">&lt;-</span> df_relacion <span class="sc">%&gt;%</span></span>
-<span id="cb61-3"><a href="análisis-bivariado.html#cb61-3" tabindex="-1"></a>  <span class="fu">arrange</span>(Year) <span class="sc">%&gt;%</span></span>
-<span id="cb61-4"><a href="análisis-bivariado.html#cb61-4" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb61-5"><a href="análisis-bivariado.html#cb61-5" tabindex="-1"></a>    <span class="at">Fecundidad_lag5 =</span> <span class="fu">lag</span>(Fecundidad_Adolescente, <span class="dv">5</span>),</span>
-<span id="cb61-6"><a href="análisis-bivariado.html#cb61-6" tabindex="-1"></a>    <span class="at">Fecundidad_lag10 =</span> <span class="fu">lag</span>(Fecundidad_Adolescente, <span class="dv">10</span>),</span>
-<span id="cb61-7"><a href="análisis-bivariado.html#cb61-7" tabindex="-1"></a>    <span class="at">Fecundidad_lag15 =</span> <span class="fu">lag</span>(Fecundidad_Adolescente, <span class="dv">15</span>)</span>
-<span id="cb61-8"><a href="análisis-bivariado.html#cb61-8" tabindex="-1"></a>  )</span>
-<span id="cb61-9"><a href="análisis-bivariado.html#cb61-9" tabindex="-1"></a></span>
-<span id="cb61-10"><a href="análisis-bivariado.html#cb61-10" tabindex="-1"></a><span class="co"># Correlación con rezago 5</span></span>
-<span id="cb61-11"><a href="análisis-bivariado.html#cb61-11" tabindex="-1"></a><span class="fu">cor.test</span>(df_rezagos<span class="sc">$</span>Fecundidad_lag5, df_rezagos<span class="sc">$</span>Poblacion_Infantil_Total)</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="análisis-bivariado.html#cb56-1" tabindex="-1"></a><span class="co"># Crear rezagos de 5, 10 y 15 años</span></span>
+<span id="cb56-2"><a href="análisis-bivariado.html#cb56-2" tabindex="-1"></a>df_rezagos <span class="ot">&lt;-</span> df_relacion <span class="sc">%&gt;%</span></span>
+<span id="cb56-3"><a href="análisis-bivariado.html#cb56-3" tabindex="-1"></a>  <span class="fu">arrange</span>(Year) <span class="sc">%&gt;%</span></span>
+<span id="cb56-4"><a href="análisis-bivariado.html#cb56-4" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb56-5"><a href="análisis-bivariado.html#cb56-5" tabindex="-1"></a>    <span class="at">Fecundidad_lag5 =</span> <span class="fu">lag</span>(Fecundidad_Adolescente, <span class="dv">5</span>),</span>
+<span id="cb56-6"><a href="análisis-bivariado.html#cb56-6" tabindex="-1"></a>    <span class="at">Fecundidad_lag10 =</span> <span class="fu">lag</span>(Fecundidad_Adolescente, <span class="dv">10</span>),</span>
+<span id="cb56-7"><a href="análisis-bivariado.html#cb56-7" tabindex="-1"></a>    <span class="at">Fecundidad_lag15 =</span> <span class="fu">lag</span>(Fecundidad_Adolescente, <span class="dv">15</span>)</span>
+<span id="cb56-8"><a href="análisis-bivariado.html#cb56-8" tabindex="-1"></a>  )</span>
+<span id="cb56-9"><a href="análisis-bivariado.html#cb56-9" tabindex="-1"></a></span>
+<span id="cb56-10"><a href="análisis-bivariado.html#cb56-10" tabindex="-1"></a><span class="co"># Correlación con rezago 5</span></span>
+<span id="cb56-11"><a href="análisis-bivariado.html#cb56-11" tabindex="-1"></a><span class="fu">cor.test</span>(df_rezagos<span class="sc">$</span>Fecundidad_lag5, df_rezagos<span class="sc">$</span>Poblacion_Infantil_Total)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
@@ -271,8 +271,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## sample estimates:
 ##       cor 
 ## 0.1525711</code></pre>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="análisis-bivariado.html#cb63-1" tabindex="-1"></a><span class="co"># Correlación con rezago 10  </span></span>
-<span id="cb63-2"><a href="análisis-bivariado.html#cb63-2" tabindex="-1"></a><span class="fu">cor.test</span>(df_rezagos<span class="sc">$</span>Fecundidad_lag10, df_rezagos<span class="sc">$</span>Poblacion_Infantil_Total)</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="análisis-bivariado.html#cb58-1" tabindex="-1"></a><span class="co"># Correlación con rezago 10  </span></span>
+<span id="cb58-2"><a href="análisis-bivariado.html#cb58-2" tabindex="-1"></a><span class="fu">cor.test</span>(df_rezagos<span class="sc">$</span>Fecundidad_lag10, df_rezagos<span class="sc">$</span>Poblacion_Infantil_Total)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
@@ -284,8 +284,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## sample estimates:
 ##        cor 
 ## -0.1793925</code></pre>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="análisis-bivariado.html#cb65-1" tabindex="-1"></a><span class="co"># Correlación con rezago 15</span></span>
-<span id="cb65-2"><a href="análisis-bivariado.html#cb65-2" tabindex="-1"></a><span class="fu">cor.test</span>(df_rezagos<span class="sc">$</span>Fecundidad_lag15, df_rezagos<span class="sc">$</span>Poblacion_Infantil_Total)</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="análisis-bivariado.html#cb60-1" tabindex="-1"></a><span class="co"># Correlación con rezago 15</span></span>
+<span id="cb60-2"><a href="análisis-bivariado.html#cb60-2" tabindex="-1"></a><span class="fu">cor.test</span>(df_rezagos<span class="sc">$</span>Fecundidad_lag15, df_rezagos<span class="sc">$</span>Poblacion_Infantil_Total)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 

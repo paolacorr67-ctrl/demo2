@@ -200,7 +200,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="análisis-univariado." class="section level1 hasAnchor" number="3">
 <h1><span class="header-section-number">Chapter 3</span> Análisis univariado.<a href="análisis-univariado..html#an%C3%A1lisis-univariado." class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Analicemos las carateristicas generales de cada variable de nuestro set de datos.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="análisis-univariado..html#cb14-1" tabindex="-1"></a><span class="fu">str</span>(df_long)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="análisis-univariado..html#cb10-1" tabindex="-1"></a><span class="fu">str</span>(df_long)</span></code></pre></div>
 <pre><code>## tibble [30,810 × 3] (S3: tbl_df/tbl/data.frame)
 ##  $ Series.Name: chr [1:30810] &quot;Adolescent fertility rate (births per 1,000 women ages 15-19)&quot; &quot;Adolescent fertility rate (births per 1,000 women ages 15-19)&quot; &quot;Adolescent fertility rate (births per 1,000 women ages 15-19)&quot; &quot;Adolescent fertility rate (births per 1,000 women ages 15-19)&quot; ...
 ##  $ Year       : Date[1:30810], format: &quot;1960-01-01&quot; &quot;1961-01-01&quot; &quot;1962-01-01&quot; &quot;1963-01-01&quot; ...
@@ -209,105 +209,105 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">3.1</span> Análisis de las variables categórica<a href="análisis-univariado..html#an%C3%A1lisis-de-las-variables-categ%C3%B3rica" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="series.name" class="section level3 hasAnchor" number="3.1.1">
 <h3><span class="header-section-number">3.1.1</span> Series.name<a href="análisis-univariado..html#series.name" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="análisis-univariado..html#cb16-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb16-2"><a href="análisis-univariado..html#cb16-2" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="análisis-univariado..html#cb16-3" tabindex="-1"></a><span class="co">#  Calcular cobertura porcentual por indicador</span></span>
-<span id="cb16-4"><a href="análisis-univariado..html#cb16-4" tabindex="-1"></a>frecuencia_indicadores <span class="ot">&lt;-</span> df_long <span class="sc">%&gt;%</span></span>
-<span id="cb16-5"><a href="análisis-univariado..html#cb16-5" tabindex="-1"></a>  <span class="fu">group_by</span>(Series.Name) <span class="sc">%&gt;%</span></span>
-<span id="cb16-6"><a href="análisis-univariado..html#cb16-6" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb16-7"><a href="análisis-univariado..html#cb16-7" tabindex="-1"></a>    <span class="at">total_registros =</span> <span class="fu">n</span>(),                     <span class="co"># Total de años posibles</span></span>
-<span id="cb16-8"><a href="análisis-univariado..html#cb16-8" tabindex="-1"></a>    años<span class="at">_con_datos =</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(Value)),       <span class="co"># Años con datos reales</span></span>
-<span id="cb16-9"><a href="análisis-univariado..html#cb16-9" tabindex="-1"></a>    años<span class="at">_sin_datos =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(Value)),        <span class="co"># Años sin datos</span></span>
-<span id="cb16-10"><a href="análisis-univariado..html#cb16-10" tabindex="-1"></a>    <span class="at">porcentaje_cobertura =</span> <span class="fu">round</span>((años_con_datos <span class="sc">/</span> total_registros) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>)</span>
-<span id="cb16-11"><a href="análisis-univariado..html#cb16-11" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb16-12"><a href="análisis-univariado..html#cb16-12" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(porcentaje_cobertura))</span>
-<span id="cb16-13"><a href="análisis-univariado..html#cb16-13" tabindex="-1"></a></span>
-<span id="cb16-14"><a href="análisis-univariado..html#cb16-14" tabindex="-1"></a><span class="co"># Ver los primeros indicadores con mayor cobertura</span></span>
-<span id="cb16-15"><a href="análisis-univariado..html#cb16-15" tabindex="-1"></a><span class="fu">head</span>(frecuencia_indicadores)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="análisis-univariado..html#cb12-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb12-2"><a href="análisis-univariado..html#cb12-2" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="análisis-univariado..html#cb12-3" tabindex="-1"></a><span class="co">#  Calcular cobertura porcentual por indicador</span></span>
+<span id="cb12-4"><a href="análisis-univariado..html#cb12-4" tabindex="-1"></a>frecuencia_indicadores <span class="ot">&lt;-</span> df_long <span class="sc">%&gt;%</span></span>
+<span id="cb12-5"><a href="análisis-univariado..html#cb12-5" tabindex="-1"></a>  <span class="fu">group_by</span>(Series.Name) <span class="sc">%&gt;%</span></span>
+<span id="cb12-6"><a href="análisis-univariado..html#cb12-6" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb12-7"><a href="análisis-univariado..html#cb12-7" tabindex="-1"></a>    <span class="at">total_registros =</span> <span class="fu">n</span>(),                     <span class="co"># Total de años posibles</span></span>
+<span id="cb12-8"><a href="análisis-univariado..html#cb12-8" tabindex="-1"></a>    años<span class="at">_con_datos =</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(Value)),       <span class="co"># Años con datos reales</span></span>
+<span id="cb12-9"><a href="análisis-univariado..html#cb12-9" tabindex="-1"></a>    años<span class="at">_sin_datos =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(Value)),        <span class="co"># Años sin datos</span></span>
+<span id="cb12-10"><a href="análisis-univariado..html#cb12-10" tabindex="-1"></a>    <span class="at">porcentaje_cobertura =</span> <span class="fu">round</span>((años_con_datos <span class="sc">/</span> total_registros) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>)</span>
+<span id="cb12-11"><a href="análisis-univariado..html#cb12-11" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb12-12"><a href="análisis-univariado..html#cb12-12" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(porcentaje_cobertura))</span>
+<span id="cb12-13"><a href="análisis-univariado..html#cb12-13" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="análisis-univariado..html#cb12-14" tabindex="-1"></a><span class="co"># Ver los primeros indicadores con mayor cobertura</span></span>
+<span id="cb12-15"><a href="análisis-univariado..html#cb12-15" tabindex="-1"></a><span class="fu">head</span>(frecuencia_indicadores)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 5
-##   Series.Name                                        total_registros años_con_datos años_sin_datos porcentaje_cobertura
-##   &lt;chr&gt;                                                        &lt;int&gt;          &lt;int&gt;          &lt;int&gt;                &lt;dbl&gt;
-## 1 Age dependency ratio (% of working-age population)              65             65              0                  100
-## 2 Age dependency ratio, old                                       65             65              0                  100
-## 3 Age dependency ratio, young                                     65             65              0                  100
-## 4 Age population, age 00, female                                  65             65              0                  100
-## 5 Age population, age 00, male                                    65             65              0                  100
-## 6 Age population, age 01, female                                  65             65              0                  100</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="análisis-univariado..html#cb18-1" tabindex="-1"></a><span class="co"># Clasificación por porcentaje</span></span>
-<span id="cb18-2"><a href="análisis-univariado..html#cb18-2" tabindex="-1"></a>df_categorias <span class="ot">&lt;-</span> frecuencia_indicadores <span class="sc">%&gt;%</span></span>
-<span id="cb18-3"><a href="análisis-univariado..html#cb18-3" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb18-4"><a href="análisis-univariado..html#cb18-4" tabindex="-1"></a>    <span class="at">categoria =</span> <span class="fu">case_when</span>(</span>
-<span id="cb18-5"><a href="análisis-univariado..html#cb18-5" tabindex="-1"></a>      porcentaje_cobertura <span class="sc">&gt;=</span> <span class="dv">80</span> <span class="sc">~</span> <span class="st">&quot;Alta cobertura (≥80%)&quot;</span>,</span>
-<span id="cb18-6"><a href="análisis-univariado..html#cb18-6" tabindex="-1"></a>      porcentaje_cobertura <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">&quot;Cobertura media (50–79%)&quot;</span>,</span>
-<span id="cb18-7"><a href="análisis-univariado..html#cb18-7" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;Baja cobertura (&lt;50%)&quot;</span></span>
-<span id="cb18-8"><a href="análisis-univariado..html#cb18-8" tabindex="-1"></a>    )</span>
-<span id="cb18-9"><a href="análisis-univariado..html#cb18-9" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb18-10"><a href="análisis-univariado..html#cb18-10" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb18-11"><a href="análisis-univariado..html#cb18-11" tabindex="-1"></a>    <span class="at">categoria =</span> <span class="fu">factor</span>(categoria,</span>
-<span id="cb18-12"><a href="análisis-univariado..html#cb18-12" tabindex="-1"></a>                       <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Alta cobertura (&gt;=80%)&quot;</span>,</span>
-<span id="cb18-13"><a href="análisis-univariado..html#cb18-13" tabindex="-1"></a>                                  <span class="st">&quot;Cobertura media (50–79%)&quot;</span>,</span>
-<span id="cb18-14"><a href="análisis-univariado..html#cb18-14" tabindex="-1"></a>                                  <span class="st">&quot;Baja cobertura (&lt;50%)&quot;</span>))</span>
-<span id="cb18-15"><a href="análisis-univariado..html#cb18-15" tabindex="-1"></a>  )</span>
-<span id="cb18-16"><a href="análisis-univariado..html#cb18-16" tabindex="-1"></a>resumen_categorias <span class="ot">&lt;-</span> df_categorias <span class="sc">%&gt;%</span></span>
-<span id="cb18-17"><a href="análisis-univariado..html#cb18-17" tabindex="-1"></a>  <span class="fu">group_by</span>(categoria) <span class="sc">%&gt;%</span></span>
-<span id="cb18-18"><a href="análisis-univariado..html#cb18-18" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb18-19"><a href="análisis-univariado..html#cb18-19" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">porcentaje =</span> <span class="fu">round</span>(n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>))</span>
-<span id="cb18-20"><a href="análisis-univariado..html#cb18-20" tabindex="-1"></a></span>
-<span id="cb18-21"><a href="análisis-univariado..html#cb18-21" tabindex="-1"></a><span class="fu">print</span>(resumen_categorias)</span></code></pre></div>
+##   Series.Name                                        total_registros `años_con_datos` `años_sin_datos` porcentaje_cobertura
+##   &lt;chr&gt;                                                        &lt;int&gt;            &lt;int&gt;            &lt;int&gt;                &lt;dbl&gt;
+## 1 Age dependency ratio (% of working-age population)              65               65                0                  100
+## 2 Age dependency ratio, old                                       65               65                0                  100
+## 3 Age dependency ratio, young                                     65               65                0                  100
+## 4 Age population, age 00, female                                  65               65                0                  100
+## 5 Age population, age 00, male                                    65               65                0                  100
+## 6 Age population, age 01, female                                  65               65                0                  100</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="análisis-univariado..html#cb14-1" tabindex="-1"></a><span class="co"># Clasificación por porcentaje</span></span>
+<span id="cb14-2"><a href="análisis-univariado..html#cb14-2" tabindex="-1"></a>df_categorias <span class="ot">&lt;-</span> frecuencia_indicadores <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="análisis-univariado..html#cb14-3" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb14-4"><a href="análisis-univariado..html#cb14-4" tabindex="-1"></a>    <span class="at">categoria =</span> <span class="fu">case_when</span>(</span>
+<span id="cb14-5"><a href="análisis-univariado..html#cb14-5" tabindex="-1"></a>      porcentaje_cobertura <span class="sc">&gt;=</span> <span class="dv">80</span> <span class="sc">~</span> <span class="st">&quot;Alta cobertura (≥80%)&quot;</span>,</span>
+<span id="cb14-6"><a href="análisis-univariado..html#cb14-6" tabindex="-1"></a>      porcentaje_cobertura <span class="sc">&gt;=</span> <span class="dv">50</span> <span class="sc">~</span> <span class="st">&quot;Cobertura media (50–79%)&quot;</span>,</span>
+<span id="cb14-7"><a href="análisis-univariado..html#cb14-7" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;Baja cobertura (&lt;50%)&quot;</span></span>
+<span id="cb14-8"><a href="análisis-univariado..html#cb14-8" tabindex="-1"></a>    )</span>
+<span id="cb14-9"><a href="análisis-univariado..html#cb14-9" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb14-10"><a href="análisis-univariado..html#cb14-10" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb14-11"><a href="análisis-univariado..html#cb14-11" tabindex="-1"></a>    <span class="at">categoria =</span> <span class="fu">factor</span>(categoria,</span>
+<span id="cb14-12"><a href="análisis-univariado..html#cb14-12" tabindex="-1"></a>                       <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Alta cobertura (&gt;=80%)&quot;</span>,</span>
+<span id="cb14-13"><a href="análisis-univariado..html#cb14-13" tabindex="-1"></a>                                  <span class="st">&quot;Cobertura media (50–79%)&quot;</span>,</span>
+<span id="cb14-14"><a href="análisis-univariado..html#cb14-14" tabindex="-1"></a>                                  <span class="st">&quot;Baja cobertura (&lt;50%)&quot;</span>))</span>
+<span id="cb14-15"><a href="análisis-univariado..html#cb14-15" tabindex="-1"></a>  )</span>
+<span id="cb14-16"><a href="análisis-univariado..html#cb14-16" tabindex="-1"></a>resumen_categorias <span class="ot">&lt;-</span> df_categorias <span class="sc">%&gt;%</span></span>
+<span id="cb14-17"><a href="análisis-univariado..html#cb14-17" tabindex="-1"></a>  <span class="fu">group_by</span>(categoria) <span class="sc">%&gt;%</span></span>
+<span id="cb14-18"><a href="análisis-univariado..html#cb14-18" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb14-19"><a href="análisis-univariado..html#cb14-19" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">porcentaje =</span> <span class="fu">round</span>(n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>))</span>
+<span id="cb14-20"><a href="análisis-univariado..html#cb14-20" tabindex="-1"></a></span>
+<span id="cb14-21"><a href="análisis-univariado..html#cb14-21" tabindex="-1"></a><span class="fu">print</span>(resumen_categorias)</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 3
-##   categoria                    n porcentaje
-##   &lt;fct&gt;                    &lt;int&gt;      &lt;dbl&gt;
-## 1 Cobertura media (50–79%)    67       14.1
-## 2 Baja cobertura (&lt;50%)      226       47.7
-## 3 &lt;NA&gt;                       181       38.2</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="análisis-univariado..html#cb20-1" tabindex="-1"></a><span class="fu">ggplot</span>(resumen_categorias, <span class="fu">aes</span>(<span class="at">x =</span> categoria, <span class="at">y =</span> n, <span class="at">fill =</span> categoria)) <span class="sc">+</span></span>
-<span id="cb20-2"><a href="análisis-univariado..html#cb20-2" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb20-3"><a href="análisis-univariado..html#cb20-3" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(n, <span class="st">&quot; (&quot;</span>, porcentaje, <span class="st">&quot;%)&quot;</span>)), </span>
-<span id="cb20-4"><a href="análisis-univariado..html#cb20-4" tabindex="-1"></a>            <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, </span>
-<span id="cb20-5"><a href="análisis-univariado..html#cb20-5" tabindex="-1"></a>            <span class="at">size =</span> <span class="dv">4</span>,</span>
-<span id="cb20-6"><a href="análisis-univariado..html#cb20-6" tabindex="-1"></a>            <span class="at">fontface =</span> <span class="st">&quot;bold&quot;</span>) <span class="sc">+</span></span>
-<span id="cb20-7"><a href="análisis-univariado..html#cb20-7" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(</span>
-<span id="cb20-8"><a href="análisis-univariado..html#cb20-8" tabindex="-1"></a>    <span class="st">&quot;Alta cobertura (≥80%)&quot;</span> <span class="ot">=</span> <span class="st">&quot;#1F4E79&quot;</span>,</span>
-<span id="cb20-9"><a href="análisis-univariado..html#cb20-9" tabindex="-1"></a>    <span class="st">&quot;Cobertura media (50–79%)&quot;</span> <span class="ot">=</span> <span class="st">&quot;#4A7A9C&quot;</span>,</span>
-<span id="cb20-10"><a href="análisis-univariado..html#cb20-10" tabindex="-1"></a>    <span class="st">&quot;Baja cobertura (&lt;50%)&quot;</span> <span class="ot">=</span> <span class="st">&quot;#7BA0B9&quot;</span></span>
-<span id="cb20-11"><a href="análisis-univariado..html#cb20-11" tabindex="-1"></a>  )) <span class="sc">+</span></span>
-<span id="cb20-12"><a href="análisis-univariado..html#cb20-12" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb20-13"><a href="análisis-univariado..html#cb20-13" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb20-14"><a href="análisis-univariado..html#cb20-14" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
-<span id="cb20-15"><a href="análisis-univariado..html#cb20-15" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">&quot;gray50&quot;</span>),</span>
-<span id="cb20-16"><a href="análisis-univariado..html#cb20-16" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
-<span id="cb20-17"><a href="análisis-univariado..html#cb20-17" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>),</span>
-<span id="cb20-18"><a href="análisis-univariado..html#cb20-18" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>,</span>
-<span id="cb20-19"><a href="análisis-univariado..html#cb20-19" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb20-20"><a href="análisis-univariado..html#cb20-20" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb20-21"><a href="análisis-univariado..html#cb20-21" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb20-22"><a href="análisis-univariado..html#cb20-22" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb20-23"><a href="análisis-univariado..html#cb20-23" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Clasificación de indicadores según cobertura temporal&quot;</span>,</span>
-<span id="cb20-24"><a href="análisis-univariado..html#cb20-24" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Criterio basado en porcentaje de datos disponibles (1960–2024)&quot;</span>,</span>
-<span id="cb20-25"><a href="análisis-univariado..html#cb20-25" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Nivel de cobertura&quot;</span>,</span>
-<span id="cb20-26"><a href="análisis-univariado..html#cb20-26" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Número de indicadores&quot;</span></span>
-<span id="cb20-27"><a href="análisis-univariado..html#cb20-27" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-6-1.png" alt="" width="672" /></p>
+##   categoria                           n porcentaje
+##   &lt;fct&gt;                           &lt;int&gt;      &lt;dbl&gt;
+## 1 &quot;Cobertura media (50\u201379%)&quot;    67       14.1
+## 2 &quot;Baja cobertura (&lt;50%)&quot;           226       47.7
+## 3  &lt;NA&gt;                             181       38.2</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="análisis-univariado..html#cb16-1" tabindex="-1"></a><span class="fu">ggplot</span>(resumen_categorias, <span class="fu">aes</span>(<span class="at">x =</span> categoria, <span class="at">y =</span> n, <span class="at">fill =</span> categoria)) <span class="sc">+</span></span>
+<span id="cb16-2"><a href="análisis-univariado..html#cb16-2" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb16-3"><a href="análisis-univariado..html#cb16-3" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(n, <span class="st">&quot; (&quot;</span>, porcentaje, <span class="st">&quot;%)&quot;</span>)), </span>
+<span id="cb16-4"><a href="análisis-univariado..html#cb16-4" tabindex="-1"></a>            <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, </span>
+<span id="cb16-5"><a href="análisis-univariado..html#cb16-5" tabindex="-1"></a>            <span class="at">size =</span> <span class="dv">4</span>,</span>
+<span id="cb16-6"><a href="análisis-univariado..html#cb16-6" tabindex="-1"></a>            <span class="at">fontface =</span> <span class="st">&quot;bold&quot;</span>) <span class="sc">+</span></span>
+<span id="cb16-7"><a href="análisis-univariado..html#cb16-7" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb16-8"><a href="análisis-univariado..html#cb16-8" tabindex="-1"></a>    <span class="st">&quot;Alta cobertura (≥80%)&quot;</span> <span class="ot">=</span> <span class="st">&quot;#1F4E79&quot;</span>,</span>
+<span id="cb16-9"><a href="análisis-univariado..html#cb16-9" tabindex="-1"></a>    <span class="st">&quot;Cobertura media (50–79%)&quot;</span> <span class="ot">=</span> <span class="st">&quot;#4A7A9C&quot;</span>,</span>
+<span id="cb16-10"><a href="análisis-univariado..html#cb16-10" tabindex="-1"></a>    <span class="st">&quot;Baja cobertura (&lt;50%)&quot;</span> <span class="ot">=</span> <span class="st">&quot;#7BA0B9&quot;</span></span>
+<span id="cb16-11"><a href="análisis-univariado..html#cb16-11" tabindex="-1"></a>  )) <span class="sc">+</span></span>
+<span id="cb16-12"><a href="análisis-univariado..html#cb16-12" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb16-13"><a href="análisis-univariado..html#cb16-13" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb16-14"><a href="análisis-univariado..html#cb16-14" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">16</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>),</span>
+<span id="cb16-15"><a href="análisis-univariado..html#cb16-15" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">&quot;gray50&quot;</span>),</span>
+<span id="cb16-16"><a href="análisis-univariado..html#cb16-16" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb16-17"><a href="análisis-univariado..html#cb16-17" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>),</span>
+<span id="cb16-18"><a href="análisis-univariado..html#cb16-18" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>,</span>
+<span id="cb16-19"><a href="análisis-univariado..html#cb16-19" tabindex="-1"></a>    <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb16-20"><a href="análisis-univariado..html#cb16-20" tabindex="-1"></a>    <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb16-21"><a href="análisis-univariado..html#cb16-21" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb16-22"><a href="análisis-univariado..html#cb16-22" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb16-23"><a href="análisis-univariado..html#cb16-23" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Clasificación de indicadores según cobertura temporal&quot;</span>,</span>
+<span id="cb16-24"><a href="análisis-univariado..html#cb16-24" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Criterio basado en porcentaje de datos disponibles (1960–2024)&quot;</span>,</span>
+<span id="cb16-25"><a href="análisis-univariado..html#cb16-25" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Nivel de cobertura&quot;</span>,</span>
+<span id="cb16-26"><a href="análisis-univariado..html#cb16-26" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Número de indicadores&quot;</span></span>
+<span id="cb16-27"><a href="análisis-univariado..html#cb16-27" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-29-1.png" alt="" width="672" /></p>
 <p>El análisis de cobertura temporal revela que el 47.7% de los indicadores presenta baja cobertura (&lt;50%), lo que indica una disponibilidad limitada de datos a lo largo del período 1960–2024. Esto sugiere que una proporción considerable de indicadores no cuenta con suficiente respaldo histórico para realizar análisis de tendencia de largo plazo.</p>
 <p>Por otro lado, el 38.2% de los indicadores muestra alta cobertura (≥80%), lo que garantiza una base sólida para estudios longitudinales y análisis comparativos en el tiempo.</p>
 <p>Estos resultados evidencian que, aunque el dataset es amplio en términos de cantidad de indicadores, la calidad y continuidad temporal de la información es heterogénea.Por lo tanto, para los análisis posteriores se priorizarán los indicadores con alta cobertura, con el fin de asegurar mayor consistencia y confiabilidad en los resultados.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="análisis-univariado..html#cb21-1" tabindex="-1"></a><span class="co"># Filtrar solo indicadores de alta cobertura (&gt;50 años con datos)</span></span>
-<span id="cb21-2"><a href="análisis-univariado..html#cb21-2" tabindex="-1"></a>indicadores_alta_cobertura <span class="ot">&lt;-</span> frecuencia_indicadores <span class="sc">%&gt;%</span></span>
-<span id="cb21-3"><a href="análisis-univariado..html#cb21-3" tabindex="-1"></a>  <span class="fu">filter</span>(años_con_datos <span class="sc">&gt;</span> <span class="dv">50</span>)</span>
-<span id="cb21-4"><a href="análisis-univariado..html#cb21-4" tabindex="-1"></a></span>
-<span id="cb21-5"><a href="análisis-univariado..html#cb21-5" tabindex="-1"></a><span class="co"># Ver cuántos indicadores de alta cobertura tenemos</span></span>
-<span id="cb21-6"><a href="análisis-univariado..html#cb21-6" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Número de indicadores de alta cobertura:&quot;</span>, <span class="fu">nrow</span>(indicadores_alta_cobertura))</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="análisis-univariado..html#cb17-1" tabindex="-1"></a><span class="co"># Filtrar solo indicadores de alta cobertura (&gt;50 años con datos)</span></span>
+<span id="cb17-2"><a href="análisis-univariado..html#cb17-2" tabindex="-1"></a>indicadores_alta_cobertura <span class="ot">&lt;-</span> frecuencia_indicadores <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="análisis-univariado..html#cb17-3" tabindex="-1"></a>  <span class="fu">filter</span>(años_con_datos <span class="sc">&gt;</span> <span class="dv">50</span>)</span>
+<span id="cb17-4"><a href="análisis-univariado..html#cb17-4" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="análisis-univariado..html#cb17-5" tabindex="-1"></a><span class="co"># Ver cuántos indicadores de alta cobertura tenemos</span></span>
+<span id="cb17-6"><a href="análisis-univariado..html#cb17-6" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Número de indicadores de alta cobertura:&quot;</span>, <span class="fu">nrow</span>(indicadores_alta_cobertura))</span></code></pre></div>
 <pre><code>## Número de indicadores de alta cobertura: 181</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="análisis-univariado..html#cb23-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Porcentaje del total:&quot;</span>, <span class="fu">round</span>(<span class="fu">nrow</span>(indicadores_alta_cobertura)<span class="sc">/</span><span class="fu">nrow</span>(frecuencia_indicadores)<span class="sc">*</span><span class="dv">100</span>, <span class="dv">2</span>), <span class="st">&quot;%&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="análisis-univariado..html#cb19-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Porcentaje del total:&quot;</span>, <span class="fu">round</span>(<span class="fu">nrow</span>(indicadores_alta_cobertura)<span class="sc">/</span><span class="fu">nrow</span>(frecuencia_indicadores)<span class="sc">*</span><span class="dv">100</span>, <span class="dv">2</span>), <span class="st">&quot;%&quot;</span>)</span></code></pre></div>
 <pre><code>## Porcentaje del total: 38.19 %</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="análisis-univariado..html#cb25-1" tabindex="-1"></a><span class="co"># Ver los nombres de los indicadores de alta cobertura</span></span>
-<span id="cb25-2"><a href="análisis-univariado..html#cb25-2" tabindex="-1"></a></span>
-<span id="cb25-3"><a href="análisis-univariado..html#cb25-3" tabindex="-1"></a><span class="co"># Si quieres crear un nuevo dataframe SOLO con los datos de estos indicadores</span></span>
-<span id="cb25-4"><a href="análisis-univariado..html#cb25-4" tabindex="-1"></a>df_alta_cobertura <span class="ot">&lt;-</span> df_long <span class="sc">%&gt;%</span></span>
-<span id="cb25-5"><a href="análisis-univariado..html#cb25-5" tabindex="-1"></a>  <span class="fu">filter</span>(Series.Name <span class="sc">%in%</span> indicadores_alta_cobertura<span class="sc">$</span>Series.Name)</span>
-<span id="cb25-6"><a href="análisis-univariado..html#cb25-6" tabindex="-1"></a></span>
-<span id="cb25-7"><a href="análisis-univariado..html#cb25-7" tabindex="-1"></a><span class="co"># Reemplazar df_long por la versión filtrada</span></span>
-<span id="cb25-8"><a href="análisis-univariado..html#cb25-8" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> df_alta_cobertura</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="análisis-univariado..html#cb21-1" tabindex="-1"></a><span class="co"># Ver los nombres de los indicadores de alta cobertura</span></span>
+<span id="cb21-2"><a href="análisis-univariado..html#cb21-2" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="análisis-univariado..html#cb21-3" tabindex="-1"></a><span class="co"># Si quieres crear un nuevo dataframe SOLO con los datos de estos indicadores</span></span>
+<span id="cb21-4"><a href="análisis-univariado..html#cb21-4" tabindex="-1"></a>df_alta_cobertura <span class="ot">&lt;-</span> df_long <span class="sc">%&gt;%</span></span>
+<span id="cb21-5"><a href="análisis-univariado..html#cb21-5" tabindex="-1"></a>  <span class="fu">filter</span>(Series.Name <span class="sc">%in%</span> indicadores_alta_cobertura<span class="sc">$</span>Series.Name)</span>
+<span id="cb21-6"><a href="análisis-univariado..html#cb21-6" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="análisis-univariado..html#cb21-7" tabindex="-1"></a><span class="co"># Reemplazar df_long por la versión filtrada</span></span>
+<span id="cb21-8"><a href="análisis-univariado..html#cb21-8" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> df_alta_cobertura</span></code></pre></div>
 <p>Tras aplicar el criterio de selección, el conjunto de datos se reduce de 474 a 181 indicadores, lo que representa una depuración del 61.8% de los indicadores originales. Este filtrado mejora la calidad del análisis al concentrarse en variables con suficiente continuidad temporal.</p>
 </div>
 </div>
@@ -315,63 +315,59 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">3.2</span> Análisis de las variables numericas.<a href="análisis-univariado..html#an%C3%A1lisis-de-las-variables-numericas." class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="year" class="section level3 hasAnchor" number="3.2.1">
 <h3><span class="header-section-number">3.2.1</span> Year<a href="análisis-univariado..html#year" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="análisis-univariado..html#cb26-1" tabindex="-1"></a><span class="fu">summary</span>(df_long<span class="sc">$</span>Year)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="análisis-univariado..html#cb22-1" tabindex="-1"></a><span class="fu">summary</span>(df_long<span class="sc">$</span>Year)</span></code></pre></div>
 <pre><code>##         Min.      1st Qu.       Median         Mean      3rd Qu.         Max. 
 ## &quot;1960-01-01&quot; &quot;1976-01-01&quot; &quot;1992-01-01&quot; &quot;1992-01-01&quot; &quot;2008-01-01&quot; &quot;2024-01-01&quot;</code></pre>
 <p>La variable Year presenta un rango entre 1960 y 2024. La coincidencia entre media y mediana (1992) indica una distribución temporal simétrica, sin concentración excesiva en años específicos dentro del período analizado.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="análisis-univariado..html#cb28-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb28-2"><a href="análisis-univariado..html#cb28-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb28-3"><a href="análisis-univariado..html#cb28-3" tabindex="-1"></a></span>
-<span id="cb28-4"><a href="análisis-univariado..html#cb28-4" tabindex="-1"></a>datos_por_anio <span class="ot">&lt;-</span> df_long <span class="sc">%&gt;%</span></span>
-<span id="cb28-5"><a href="análisis-univariado..html#cb28-5" tabindex="-1"></a>  <span class="fu">group_by</span>(Year) <span class="sc">%&gt;%</span></span>
-<span id="cb28-6"><a href="análisis-univariado..html#cb28-6" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb28-7"><a href="análisis-univariado..html#cb28-7" tabindex="-1"></a>    <span class="at">datos_disponibles =</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(Value))</span>
-<span id="cb28-8"><a href="análisis-univariado..html#cb28-8" tabindex="-1"></a>  )</span>
-<span id="cb28-9"><a href="análisis-univariado..html#cb28-9" tabindex="-1"></a></span>
-<span id="cb28-10"><a href="análisis-univariado..html#cb28-10" tabindex="-1"></a><span class="fu">ggplot</span>(datos_por_anio, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> datos_disponibles)) <span class="sc">+</span></span>
-<span id="cb28-11"><a href="análisis-univariado..html#cb28-11" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;#1F4E79&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb28-12"><a href="análisis-univariado..html#cb28-12" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb28-13"><a href="análisis-univariado..html#cb28-13" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb28-14"><a href="análisis-univariado..html#cb28-14" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Disponibilidad de datos por año &quot;</span>,</span>
-<span id="cb28-15"><a href="análisis-univariado..html#cb28-15" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Año&quot;</span>,</span>
-<span id="cb28-16"><a href="análisis-univariado..html#cb28-16" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Número de registros disponibles&quot;</span></span>
-<span id="cb28-17"><a href="análisis-univariado..html#cb28-17" tabindex="-1"></a>  )</span></code></pre></div>
-<pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-## ℹ Please use `linewidth` instead.
-## This warning is displayed once per session.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" alt="" width="672" /></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="análisis-univariado..html#cb24-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb24-2"><a href="análisis-univariado..html#cb24-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb24-3"><a href="análisis-univariado..html#cb24-3" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="análisis-univariado..html#cb24-4" tabindex="-1"></a>datos_por_anio <span class="ot">&lt;-</span> df_long <span class="sc">%&gt;%</span></span>
+<span id="cb24-5"><a href="análisis-univariado..html#cb24-5" tabindex="-1"></a>  <span class="fu">group_by</span>(Year) <span class="sc">%&gt;%</span></span>
+<span id="cb24-6"><a href="análisis-univariado..html#cb24-6" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb24-7"><a href="análisis-univariado..html#cb24-7" tabindex="-1"></a>    <span class="at">datos_disponibles =</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(Value))</span>
+<span id="cb24-8"><a href="análisis-univariado..html#cb24-8" tabindex="-1"></a>  )</span>
+<span id="cb24-9"><a href="análisis-univariado..html#cb24-9" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="análisis-univariado..html#cb24-10" tabindex="-1"></a><span class="fu">ggplot</span>(datos_por_anio, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> datos_disponibles)) <span class="sc">+</span></span>
+<span id="cb24-11"><a href="análisis-univariado..html#cb24-11" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;#1F4E79&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb24-12"><a href="análisis-univariado..html#cb24-12" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb24-13"><a href="análisis-univariado..html#cb24-13" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb24-14"><a href="análisis-univariado..html#cb24-14" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Disponibilidad de datos por año &quot;</span>,</span>
+<span id="cb24-15"><a href="análisis-univariado..html#cb24-15" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Año&quot;</span>,</span>
+<span id="cb24-16"><a href="análisis-univariado..html#cb24-16" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Número de registros disponibles&quot;</span></span>
+<span id="cb24-17"><a href="análisis-univariado..html#cb24-17" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-32-1.png" alt="" width="672" /></p>
 </div>
 <div id="value" class="section level3 hasAnchor" number="3.2.2">
 <h3><span class="header-section-number">3.2.2</span> Value<a href="análisis-univariado..html#value" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="análisis-univariado..html#cb30-1" tabindex="-1"></a><span class="fu">summary</span>(df_long<span class="sc">$</span>Value)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="análisis-univariado..html#cb25-1" tabindex="-1"></a><span class="fu">summary</span>(df_long<span class="sc">$</span>Value)</span></code></pre></div>
 <pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max.     NA&#39;s 
 ##   -98057       15   209957  1226070   418892 52886363       31</code></pre>
 <p>El análisis descriptivo de la variable Value muestra una alta dispersión en los datos. El valor mínimo registrado es de -98.057, mientras que el valor máximo alcanza 52.886.363, lo que evidencia una amplitud considerable entre los indicadores analizados.</p>
 <p>La media (1.226.070) es significativamente mayor que la mediana (209.957), lo que indica una fuerte asimetría positiva en la distribución. Esto sugiere la presencia de valores extremadamente altos que influyen en el promedio, mientras que la mayoría de las observaciones se concentra en magnitudes considerablemente menores.</p>
 <p>El primer cuartil (15) y el tercer cuartil (418.892) muestran que el 50% central de los datos se ubica en un rango amplio, lo cual refleja la coexistencia de indicadores medidos en distintas escalas y unidades. En consecuencia, la variable no puede interpretarse como una medida homogénea, sino como la agregación de múltiples fenómenos demográficos y de salud.</p>
 <p>Finalmente, se identificaron 31 valores faltantes (NA) dentro del subconjunto de indicadores de alta cobertura, lo que representa una proporción reducida en comparación con el total de observaciones filtradas.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="análisis-univariado..html#cb32-1" tabindex="-1"></a><span class="co">#Veamos que indicador nos arroja ese valor negativo alto.</span></span>
-<span id="cb32-2"><a href="análisis-univariado..html#cb32-2" tabindex="-1"></a>df_long <span class="sc">%&gt;%</span></span>
-<span id="cb32-3"><a href="análisis-univariado..html#cb32-3" tabindex="-1"></a>  <span class="fu">filter</span>(Value <span class="sc">==</span> <span class="fu">min</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="análisis-univariado..html#cb27-1" tabindex="-1"></a><span class="co">#Veamos que indicador nos arroja ese valor negativo alto.</span></span>
+<span id="cb27-2"><a href="análisis-univariado..html#cb27-2" tabindex="-1"></a>df_long <span class="sc">%&gt;%</span></span>
+<span id="cb27-3"><a href="análisis-univariado..html#cb27-3" tabindex="-1"></a>  <span class="fu">filter</span>(Value <span class="sc">==</span> <span class="fu">min</span>(Value, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 3
 ##   Series.Name   Year        Value
 ##   &lt;chr&gt;         &lt;date&gt;      &lt;dbl&gt;
 ## 1 Net migration 1976-01-01 -98057</code></pre>
 <p>El valor mínimo observado (-98.057) corresponde al indicador de migración neta en el año 1976. Este valor negativo indica que, durante ese año, Colombia registró una mayor cantidad de emigrantes que inmigrantes.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="análisis-univariado..html#cb34-1" tabindex="-1"></a><span class="fu">ggplot</span>(df_long, <span class="fu">aes</span>(<span class="at">x =</span> Value)) <span class="sc">+</span></span>
-<span id="cb34-2"><a href="análisis-univariado..html#cb34-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">&quot;#6baed6&quot;</span>, <span class="at">color =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
-<span id="cb34-3"><a href="análisis-univariado..html#cb34-3" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb34-4"><a href="análisis-univariado..html#cb34-4" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución General de la Variable Value&quot;</span>,</span>
-<span id="cb34-5"><a href="análisis-univariado..html#cb34-5" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Valor&quot;</span>,</span>
-<span id="cb34-6"><a href="análisis-univariado..html#cb34-6" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Frecuencia&quot;</span></span>
-<span id="cb34-7"><a href="análisis-univariado..html#cb34-7" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb34-8"><a href="análisis-univariado..html#cb34-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb34-9"><a href="análisis-univariado..html#cb34-9" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb34-10"><a href="análisis-univariado..html#cb34-10" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
-<span id="cb34-11"><a href="análisis-univariado..html#cb34-11" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="análisis-univariado..html#cb29-1" tabindex="-1"></a><span class="fu">ggplot</span>(df_long, <span class="fu">aes</span>(<span class="at">x =</span> Value)) <span class="sc">+</span></span>
+<span id="cb29-2"><a href="análisis-univariado..html#cb29-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">&quot;#6baed6&quot;</span>, <span class="at">color =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb29-3"><a href="análisis-univariado..html#cb29-3" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb29-4"><a href="análisis-univariado..html#cb29-4" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribución General de la Variable Value&quot;</span>,</span>
+<span id="cb29-5"><a href="análisis-univariado..html#cb29-5" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Valor&quot;</span>,</span>
+<span id="cb29-6"><a href="análisis-univariado..html#cb29-6" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Frecuencia&quot;</span></span>
+<span id="cb29-7"><a href="análisis-univariado..html#cb29-7" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb29-8"><a href="análisis-univariado..html#cb29-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb29-9"><a href="análisis-univariado..html#cb29-9" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb29-10"><a href="análisis-univariado..html#cb29-10" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb29-11"><a href="análisis-univariado..html#cb29-11" tabindex="-1"></a>  )</span></code></pre></div>
 <pre><code>## Warning: Removed 31 rows containing non-finite outside the scale range (`stat_bin()`).</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-12-1.png" alt="" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-35-1.png" alt="" width="672" /></p>
 <p>La distribución general de la variable Value muestra una marcada asimetría positiva. La mayor parte de las observaciones se concentra en valores bajos, cercanos a cero, mientras que un número reducido de registros alcanza magnitudes extremadamente altas, generando una cola larga hacia la derecha. Esta concentración provoca que el histograma se vea comprimido en el extremo inferior del eje horizontal, dificultando la visualización detallada de la mayoría de los datos. Este comportamiento es consistente con la diferencia observada entre la media y la mediana, y refleja la coexistencia de indicadores medidos en escalas muy distintas dentro del mismo conjunto de datos. Por lo tanto, no es apropiado interpretar esta variable de manera agregada, siendo más adecuado analizar cada indicador de forma individual.</p>
 
 </div>

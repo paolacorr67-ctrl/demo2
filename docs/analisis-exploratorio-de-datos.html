@@ -298,24 +298,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">2.4</span> Transformación del dataset<a href="analisis-exploratorio-de-datos.html#transformaci%C3%B3n-del-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>El formato ancho dificulta la manipulación, visualización y análisis de series temporales, por lo que se realizó una transformación a formato largo siguiendo el principio de tidy data.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="analisis-exploratorio-de-datos.html#cb5-1" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb5-2"><a href="analisis-exploratorio-de-datos.html#cb5-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code></pre></div>
-<pre><code>## 
-## Adjuntando el paquete: &#39;dplyr&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="analisis-exploratorio-de-datos.html#cb9-1" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="analisis-exploratorio-de-datos.html#cb9-2" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb9-3"><a href="analisis-exploratorio-de-datos.html#cb9-3" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(Series.Name, Series.Code, Country.Name, Country.Code),</span>
-<span id="cb9-4"><a href="analisis-exploratorio-de-datos.html#cb9-4" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">&quot;Year&quot;</span>,</span>
-<span id="cb9-5"><a href="analisis-exploratorio-de-datos.html#cb9-5" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">&quot;Value&quot;</span></span>
-<span id="cb9-6"><a href="analisis-exploratorio-de-datos.html#cb9-6" tabindex="-1"></a>  )</span>
-<span id="cb9-7"><a href="analisis-exploratorio-de-datos.html#cb9-7" tabindex="-1"></a></span>
-<span id="cb9-8"><a href="analisis-exploratorio-de-datos.html#cb9-8" tabindex="-1"></a>df_long<span class="sc">$</span>Year <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;X|</span><span class="sc">\\</span><span class="st">.</span><span class="sc">\\</span><span class="st">.YR.*&quot;</span>, <span class="st">&quot;&quot;</span>, df_long<span class="sc">$</span>Year)</span>
-<span id="cb9-9"><a href="analisis-exploratorio-de-datos.html#cb9-9" tabindex="-1"></a><span class="fu">head</span>(df_long)</span></code></pre></div>
+<span id="cb5-2"><a href="analisis-exploratorio-de-datos.html#cb5-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb5-3"><a href="analisis-exploratorio-de-datos.html#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="analisis-exploratorio-de-datos.html#cb5-4" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb5-5"><a href="analisis-exploratorio-de-datos.html#cb5-5" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb5-6"><a href="analisis-exploratorio-de-datos.html#cb5-6" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(Series.Name, Series.Code, Country.Name, Country.Code),</span>
+<span id="cb5-7"><a href="analisis-exploratorio-de-datos.html#cb5-7" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb5-8"><a href="analisis-exploratorio-de-datos.html#cb5-8" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">&quot;Value&quot;</span></span>
+<span id="cb5-9"><a href="analisis-exploratorio-de-datos.html#cb5-9" tabindex="-1"></a>  )</span>
+<span id="cb5-10"><a href="analisis-exploratorio-de-datos.html#cb5-10" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="analisis-exploratorio-de-datos.html#cb5-11" tabindex="-1"></a>df_long<span class="sc">$</span>Year <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;X|</span><span class="sc">\\</span><span class="st">.</span><span class="sc">\\</span><span class="st">.YR.*&quot;</span>, <span class="st">&quot;&quot;</span>, df_long<span class="sc">$</span>Year)</span>
+<span id="cb5-12"><a href="analisis-exploratorio-de-datos.html#cb5-12" tabindex="-1"></a><span class="fu">head</span>(df_long)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 6
 ##   Series.Name                                                   Series.Code Country.Name Country.Code Year  Value  
 ##   &lt;chr&gt;                                                         &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt;  
@@ -325,19 +318,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 Adolescent fertility rate (births per 1,000 women ages 15-19) SP.ADO.TFRT Colombia     COL          1963  110.377
 ## 5 Adolescent fertility rate (births per 1,000 women ages 15-19) SP.ADO.TFRT Colombia     COL          1964  107.885
 ## 6 Adolescent fertility rate (births per 1,000 women ages 15-19) SP.ADO.TFRT Colombia     COL          1965  104.921</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="analisis-exploratorio-de-datos.html#cb11-1" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> df_long <span class="sc">%&gt;%</span></span>
-<span id="cb11-2"><a href="analisis-exploratorio-de-datos.html#cb11-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb11-3"><a href="analisis-exploratorio-de-datos.html#cb11-3" tabindex="-1"></a>    <span class="at">Value =</span> <span class="fu">ifelse</span>(Value <span class="sc">==</span> <span class="st">&quot;..&quot;</span>, <span class="cn">NA</span>, Value),  <span class="co"># &quot;..&quot; pasa a NA</span></span>
-<span id="cb11-4"><a href="analisis-exploratorio-de-datos.html#cb11-4" tabindex="-1"></a>    <span class="at">Value =</span> <span class="fu">as.numeric</span>(Value), <span class="co"># Convertimos a numérico</span></span>
-<span id="cb11-5"><a href="analisis-exploratorio-de-datos.html#cb11-5" tabindex="-1"></a>    <span class="at">Year =</span> <span class="fu">as.Date</span>(<span class="fu">paste0</span>(Year, <span class="st">&quot;-01-01&quot;</span>))</span>
-<span id="cb11-6"><a href="analisis-exploratorio-de-datos.html#cb11-6" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="analisis-exploratorio-de-datos.html#cb7-1" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> df_long <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="analisis-exploratorio-de-datos.html#cb7-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-3"><a href="analisis-exploratorio-de-datos.html#cb7-3" tabindex="-1"></a>    <span class="at">Value =</span> <span class="fu">ifelse</span>(Value <span class="sc">==</span> <span class="st">&quot;..&quot;</span>, <span class="cn">NA</span>, Value),  <span class="co"># &quot;..&quot; pasa a NA</span></span>
+<span id="cb7-4"><a href="analisis-exploratorio-de-datos.html#cb7-4" tabindex="-1"></a>    <span class="at">Value =</span> <span class="fu">as.numeric</span>(Value), <span class="co"># Convertimos a numérico</span></span>
+<span id="cb7-5"><a href="analisis-exploratorio-de-datos.html#cb7-5" tabindex="-1"></a>    <span class="at">Year =</span> <span class="fu">as.Date</span>(<span class="fu">paste0</span>(Year, <span class="st">&quot;-01-01&quot;</span>))</span>
+<span id="cb7-6"><a href="analisis-exploratorio-de-datos.html#cb7-6" tabindex="-1"></a>  )</span></code></pre></div>
 <p>Puesto que el presente análisis se enfoca exclusivamente en Colombia, las columnas Country.Name y Country.Code resultan redundantes, ya que todos los registros corresponden al mismo país. De manera similar, la columna Series.Code, si bien contiene información valiosa sobre la codificación de los indicadores, no es necesaria para el análisis descriptivo y visual que se realizará, donde el nombre del indicador (Series.Name) proporciona contexto suficiente. Por lo tanto, se procede a eliminar estas columnas para trabajar con un dataset más limpio y eficiente, conservando únicamente las variables esenciales: Series.Name (nombre del indicador), Year (año) y Value (valor del indicador).</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="analisis-exploratorio-de-datos.html#cb12-1" tabindex="-1"></a><span class="co"># Eliminar las columnas Country.Name y Country.Code y Series.Code</span></span>
-<span id="cb12-2"><a href="analisis-exploratorio-de-datos.html#cb12-2" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="analisis-exploratorio-de-datos.html#cb12-3" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> df_long <span class="sc">%&gt;%</span></span>
-<span id="cb12-4"><a href="analisis-exploratorio-de-datos.html#cb12-4" tabindex="-1"></a>  <span class="fu">select</span>(Series.Name, Year, Value)</span>
-<span id="cb12-5"><a href="analisis-exploratorio-de-datos.html#cb12-5" tabindex="-1"></a></span>
-<span id="cb12-6"><a href="analisis-exploratorio-de-datos.html#cb12-6" tabindex="-1"></a><span class="fu">head</span>(df_long)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="analisis-exploratorio-de-datos.html#cb8-1" tabindex="-1"></a><span class="co"># Eliminar las columnas Country.Name y Country.Code y Series.Code</span></span>
+<span id="cb8-2"><a href="analisis-exploratorio-de-datos.html#cb8-2" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="analisis-exploratorio-de-datos.html#cb8-3" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> df_long <span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="analisis-exploratorio-de-datos.html#cb8-4" tabindex="-1"></a>  <span class="fu">select</span>(Series.Name, Year, Value)</span>
+<span id="cb8-5"><a href="analisis-exploratorio-de-datos.html#cb8-5" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="analisis-exploratorio-de-datos.html#cb8-6" tabindex="-1"></a><span class="fu">head</span>(df_long)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 3
 ##   Series.Name                                                   Year       Value
 ##   &lt;chr&gt;                                                         &lt;date&gt;     &lt;dbl&gt;
